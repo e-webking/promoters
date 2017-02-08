@@ -1,0 +1,28 @@
+<div class="wrapper">
+    <!-- Tablet and Mobile Menu Column -->
+    <div class="tabNav">
+        <div class="nav-header"> 
+            <f:cObject typoscriptObjectPath="lib.moblogo" />
+        </div>
+        <h2>Project Accounting</h2>
+    </div>
+    <!-- End -->
+    <!-- Top Header and Navigation Column -->
+    <header>
+        <div class="menu-grid">
+        <div class="container">         
+            <div class="row">
+                <div class="col-sm-3 logo"><f:cObject typoscriptObjectPath="lib.logo" /></div>
+                <div class="col-sm-9"><h1>Project Accounting</h1></div>
+            </div>
+        </div>
+        </div>
+    </header>
+    <!-- Body -->
+    <div class="container">
+        <div class="row">
+            <f:render section="content" />
+        </div>
+    </div>
+</div> 
+<f:render partial="Footer" arguments="{_all}" />

@@ -1,0 +1,40 @@
+
+nav:not(.mm-menu):not(.c-menu){display: none;}
+
+.nav-header{
+	background:#fff; min-height:70px;
+	padding:0px; color:#fff; position: relative;
+	border-bottom:1px solid #ccc;
+}
+.nav-header.fixed{position: fixed;	top: 0;	left: 0;}
+.footer.fixed{position: fixed;	bottom: 0;	left: 0;}
+
+.nav-header .mobnav{
+	background: center center no-repeat transparent; color:#0081c2;
+	background-image: url(../img/ui/mob-nav.png); cursor:pointer;
+	display:block; width:40px; height:20px; position:absolute; 
+	right:10px; top:50%; transform:translateY(-50%);
+}
+.nav-header .mobnav:hover{color:#fff;}
+
+.navbar-nav > li {float: inherit;}
+.nav>li>a:hover, .nav>li>a:focus {
+	text-decoration:none;
+	background-color: transparent;
+	}
+
+.nav-header .mob-logo{padding:10px 15px; display:inline-block;}
+
+.is-sticky .tabNav .nav-header .mob-logo-scroll{padding:10px 20px; display:inline-block; }
+.is-sticky .tabNav .nav-header .mob-logo-scroll img{transform: scale(1); display:block !important;}
+
+@media (max-width: 1280px) {
+
+.contact{font-size:18px;}
+.social-icon{padding-left:10px !important;}
+.social-icon a{display:inline-block !important; font-size:24px; padding:10px 5px !important;}
+
+}
+@media (max-width: 768px) {
+.nav-header .mob-logo img{width:80%; height: auto;}
+}

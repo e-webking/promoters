@@ -1,0 +1,7 @@
+plugin.tx_felogin_pi1.templateFile >
+plugin.tx_felogin_pi1 {
+	templateFile = {$templatePath}Resources/Private/Templates/Plugin/felogin.html
+	email_from = nobody@idealconstruction.com
+	email_fromName = Ideal Construction
+	replyTo = info@idealconstruction.com
+}

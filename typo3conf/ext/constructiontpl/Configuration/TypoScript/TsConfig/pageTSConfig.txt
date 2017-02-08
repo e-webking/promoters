@@ -1,0 +1,15 @@
+TCEFORM {
+    pages {
+            newUntil.disabled = 1
+            lastUpdated.disabled = 1
+            content_from_pid.disabled = 0
+            alias.disabled = 1
+            target.disabled = 0
+            subtitle.disabled = 1
+    }
+}
+
+TCEMAIN {
+	#clearCacheCmd
+	clearCache_pageSiblingChildren = 1
+}

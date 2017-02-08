@@ -1,0 +1,25 @@
+
+# cat = Template Settings//enable/a; type=string; label = baseURL
+baseUrl = http://typo3.local/promoters/
+
+# cat= Template Settings//enable/d; type=string; label = Template Path
+templatePath = typo3conf/ext/constructiontpl/
+
+logoFile = typo3conf/ext/constructiontpl/Resources/Public/img/logo.png
+logoWidth = 140
+logoHeight = 110
+
+# cat = Template Settings//enable/b; type=string; label = Main Root PID
+rootPID = 1
+plugin.tx_femanager {
+    view {
+        # cat=plugin.tx_femanager/file; type=string; label= Path to template root (FE)
+        templateRootPath = EXT:constructiontpl/Resources/Private/Templates/Plugin/femanager/
+
+        # cat=plugin.tx_femanager/file; type=string; label= Path to template partials (FE)
+        partialRootPath = EXT:constructiontpl/Resources/Private/Partials/femanager/
+
+        # cat=plugin.tx_femanager/file; type=string; label= Path to template layouts (FE)
+        layoutRootPath = EXT:constructiontpl/Resources/Private/Layout/femanager/
+    }
+}

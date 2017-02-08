@@ -1,0 +1,154 @@
+# page
+page = PAGE
+page.typeNum = 0
+
+config {
+  doctype = html5
+  doctype(
+<!doctype html>
+  )
+  baseURL = {$baseUrl}
+  absRefPrefix = {$baseUrl}
+  xhtml_cleaning = none
+  xmlprologue = none
+  metaCharset = utf-8
+  renderCharset = utf-8
+  # additionalHeaders = Content-Type:text/html;charset=utf-8
+  simulateStaticDocuments = 0
+  tx_realurl_enable = 1
+  linkVars = L
+  uniqueLinkVars = 0
+  language = en
+  locale_all = en_EN.UTF-8
+  htmlTag_langKey = en-EN
+  sys_language_uid = 0
+  sys_language_mode = content_fallback:1,0
+  sys_language_overlay = 1
+  spamProtectEmailAddresses = 1
+  index_enable = 1
+  index_externals = 1
+  jQueryNoConflict = 1
+  useCacheHash = 0
+  disablePrefixComment = 1
+  disableImgBorderAttr = 1
+  noPageTitle = 2
+  
+#  compressJs = 1
+#  compressCss = 1
+#  cache_period = 86400
+#  sendCacheHeaders = 1
+#  moveJsFromHeaderToFooter = 1
+}
+
+## Add Template
+page.10 = FLUIDTEMPLATE
+page.10 {
+    file = {$templatePath}Resources/Private/Templates/Home.html
+    partialRootPath = {$templatePath}Resources/Private/Partials/
+    layoutRootPath = {$templatePath}Resources/Private/Layout
+    
+
+    file.stdWrap.cObject = CASE
+    file.stdWrap.cObject {
+    key.field = backend_layout
+    key.ifEmpty.data = levelfield:-1, backend_layout_next_level, slide
+		
+	# Default Template
+	default = TEXT
+	default.value = {$templatePath}Resources/Private/Templates/Home.html
+
+        1 = TEXT
+        1.value = {$templatePath}Resources/Private/Templates/Home.html
+
+        2 = TEXT
+        2.value = {$templatePath}Resources/Private/Templates/Inner.html
+    }
+
+    variables {
+    	rootPID = TEXT
+    	rootPID.value = {$rootPID}
+    }
+}
+page.bodyTag > 
+
+## Include CSS & JS
+page.includeCSS {
+    file1 = {$templatePath}Resources/Public/css/bootstrap.min.css
+    file2 = {$templatePath}Resources/Public/css/jquery.dataTables.min.css
+    file3 = {$templatePath}Resources/Public/css/font-awesome.min.css
+    file4 = {$templatePath}Resources/Public/css/navbar-static-top.css
+    file5 = {$templatePath}Resources/Public/css/mmenu.all.css
+    file6 = {$templatePath}Resources/Public/css/mmenu.positioning.css
+    file7 = {$templatePath}Resources/Public/css/jtsage-datebox-4.0.0.bootstrap.min.css
+    file8 = {$templatePath}Resources/Public/css/material-kit.css
+    file9 = {$templatePath}Resources/Public/css/main.css
+    
+
+}
+page.includeJSlibs {
+    jquery = {$templatePath}Resources/Public/js/jquery-2.1.4.min.js
+    jquery.forceOnTop = 1
+#   jquery.compress = 1
+}
+page.includeJSFooter{
+    file1  = {$templatePath}Resources/Public/js/jquery-ui.min.js
+    file2  = {$templatePath}Resources/Public/js/bootstrap.min.js
+    file3  = {$templatePath}Resources/Public/js/jtsage-datebox-4.0.0.bootstrap.min.js
+    file4  = {$templatePath}Resources/Public/js/jtsage-datebox.lang.utf8.js
+    file5  = {$templatePath}Resources/Public/js/jquery.dataTables.min.js
+    file6  = {$templatePath}Resources/Public/js/jquery.mmenu.all.min.js
+    file8  = {$templatePath}Resources/Public/js/function.js
+
+}
+
+## Meta
+page.meta {
+  viewport = width=device-width, initial-scale=1
+  abstract.field = abstract
+  description.field = description
+  keywords.field = keywords
+  og:title.field = title
+  og:description.field = description
+}
+
+page.headerData.5 = TEXT
+page.headerData.5.field = title
+page.headerData.5.wrap = <title>|</title>
+
+page.headerData.10 = TEXT
+page.headerData.10.value (
+
+<!--[if lt IE 9]>
+  <script src="{$templatePath}Resources/Public/js/assets/html5shiv.min.js"></script>
+  <script src="{$templatePath}Resources/Public/js/assets/respond.min.js"></script>
+<![endif]-->
+
+)
+
+[globalVar = GP:type = 99]
+page >
+config.disableAllHeaderCode = 1
+config.doctype = none
+config.xhtml_cleaning = 0
+ajaxPage = PAGE
+ajaxPage.typeNum = 99
+ajaxPage.10 = FLUIDTEMPLATE
+ajaxPage.10 {
+    file = {$templatePath}Resources/Private/Templates/Ajax.html
+}
+[global]
+
+[globalVar = GP:type = 90]
+page >
+config.disableAllHeaderCode = 1
+config.additionalHeaders = Content-type:application/json
+config.doctype = none
+config.xhtml_cleaning = 0
+apiPage = PAGE
+apiPage.typeNum = 90
+apiPage.10 = FLUIDTEMPLATE
+apiPage.10 {
+    file = {$templatePath}Resources/Private/Templates/Ajax.html
+}
+tt_content.stdWrap.innerWrap >
+[global]

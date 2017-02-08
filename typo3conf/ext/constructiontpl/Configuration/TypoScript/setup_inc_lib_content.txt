@@ -1,0 +1,32 @@
+####################################################				
+### Header 
+####################################################
+lib.logo = IMAGE
+lib.logo {
+    file = {$logoFile}
+    file.width = {$logoWidth}
+    file.height = {$logoHeight}
+    stdWrap {
+        typolink.parameter = 2
+        wrap = |
+    }
+}
+
+lib.moblogo = IMAGE
+lib.moblogo {
+    file = {$logoFile}
+    file.width = {$logoWidth}
+    file.height = {$logoHeight}
+    stdWrap {
+        typolink.parameter = 2
+        typolink.ATagParams = class="mob-logo"
+        wrap = |
+    }
+}
+
+## Content - Begin
+lib.contentMain < styles.content.get
+lib.contentLeft < styles.content.getLeft
+lib.contentRight < styles.content.getRight
+lib.border < styles.content.getBorder
+## Content - End

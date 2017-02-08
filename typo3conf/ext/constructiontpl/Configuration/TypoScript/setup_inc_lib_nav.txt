@@ -1,0 +1,141 @@
+## Main Menu - Start
+lib.mainMenu = HMENU
+lib.mainMenu {
+    wrap = <ul class="nav navbar-nav">|</ul>
+    1 = TMENU
+    1 {
+        expAll = 1
+        noBlur=1
+
+        NO {
+            allWrap = <li>|</li>
+            ATagTitle.field = description // title
+            stdWrap.htmlSpecialChars = 1
+        }
+        ACT= 1
+	ACT.allWrap = <li class="active">|</li>
+
+        IFSUB = 1
+        IFSUB {	
+            # doNotLinkIt = 1
+            wrapItemAndSub = <li class="dropdown">|</li>
+            stdWrap.innerWrap= |<a href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle arrow"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+            ATagTitle.field = description // title
+            stdWrap.htmlSpecialChars = 1
+        }
+
+        ACTIFSUB < .IFSUB
+        ACTIFSUB {
+            wrapItemAndSub = <li class="dropdown active">|</li>
+        }
+        CURIFSUB < .ACTIFSUB
+    }
+
+    2 = TMENU
+    2 {
+        noBlur=1
+        expAll = 1
+        stdWrap.dataWrap = <ul class="dropdown-menu" role="menu">|</ul>
+        NO {
+            wrapItemAndSub = <li>|</li>
+            ATagTitle.field = description // title
+            stdWrap.htmlSpecialChars = 1
+        }
+        IFSUB = 1
+        IFSUB {
+            # doNotLinkIt = 1
+            wrapItemAndSub = <li class="dropdown-submenu">|</li>
+            ATagParams = class="MenuBarItemSubmenu"
+            stdWrap.htmlSpecialChars = 1
+        }
+    }
+
+    3 = TMENU
+    3 {
+        wrap = <ul class="dropdown-menu">|</ul>
+        noBlur=1
+        NO {
+            wrapItemAndSub = <li>|</li>
+            ATagTitle.field = description // title
+            stdWrap.htmlSpecialChars = 1
+        }
+    }
+}
+
+lib.mobMenu = HMENU
+lib.mobMenu {
+ 	entryLevel = 0
+ 	wrap = <ul>|</ul>
+ 	
+ 	1 = TMENU
+	1 {
+		expAll = 1
+		noBlur=1
+		NO {
+ 			ATagTitle.field = description // title
+ 			stdWrap.htmlSpecialChars = 1
+   			wrapItemAndSub = <li>|</li>
+		}
+		ACT= 1
+		ACT {
+			stdWrap.innerWrap= |
+ 			ATagTitle.field = title // description
+ 			stdWrap.htmlSpecialChars = 1
+   			wrapItemAndSub = <li class="active">|</li>
+		}
+	}
+	
+	2 = TMENU
+	2 {
+		wrap = <ul>|</ul>
+		noBlur=1
+		expAll = 1
+		NO = 1
+		NO {
+  			wrapItemAndSub = <li>|</li>
+   			ATagTitle.field = description // title
+   			stdWrap.htmlSpecialChars = 1
+ 		}
+ 		ACT= 1
+		ACT.wrapItemAndSub = <li class="active">|</li>
+	}
+	
+	3 = TMENU
+	3 {
+		wrap = <ul>|</ul>
+		noBlur=1
+		NO = 1
+		NO {
+   			wrapItemAndSub = <li>|</li>
+   			ATagTitle.field = description // title
+   			stdWrap.htmlSpecialChars = 1
+ 		}
+ 
+		ACT= 1
+		ACT.wrapItemAndSub = <li class="active">|</li>
+	}
+	
+	4 < .3
+ }
+
+lib.breadcrum = HMENU
+lib.breadcrum {
+
+	wrap=You are at:&nbsp;|
+
+	special = rootline
+	includeNotInMenu = 1
+
+	1 = TMENU
+	1 {
+            noBlur = 1 
+            NO.allWrap = |&nbsp; |*|  »&nbsp; |&nbsp; |*|
+            NO.stdWrap {
+                crop =  80 | ... | 1
+            }
+            NO.ATagTitle.field = description // title
+            ACT = 1
+            ACT.allWrap = |&nbsp; |*|  »&nbsp; |&nbsp; |*|
+            ACT.ATagTitle.field = description // title
+	}
+}

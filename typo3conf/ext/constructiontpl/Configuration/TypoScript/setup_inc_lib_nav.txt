@@ -1,7 +1,7 @@
 ## Main Menu - Start
 lib.mainMenu = HMENU
 lib.mainMenu {
-    wrap = <ul class="nav navbar-nav">|</ul>
+    wrap = <ul class="nav navbar-nav w3_megamenu">|</ul>
     1 = TMENU
     1 {
         expAll = 1
@@ -19,7 +19,7 @@ lib.mainMenu {
         IFSUB {	
             # doNotLinkIt = 1
             wrapItemAndSub = <li class="dropdown">|</li>
-            stdWrap.innerWrap= |<a href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle arrow"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+            stdWrap.innerWrap= |<a href="javascript:void(0)" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle arrow"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
             ATagTitle.field = description // title
             stdWrap.htmlSpecialChars = 1
         }

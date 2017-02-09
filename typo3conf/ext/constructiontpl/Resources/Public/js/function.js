@@ -1,37 +1,22 @@
-$(document).ready(function(){ 
-    $("div#menu").mmenu({
+(function($) {
+     $("div#menu").mmenu({
        "offCanvas": {
             position: "right"
        }
     });
-        /*      
-	$('#divshowhide').click(function(){
-  		$('#responsivediv').show();
-  		$('#divshowhide2').show();
-   		$('#divshowhide').hide();
-   		$('#deleteexpdiv').hide();
-	});
-	
-	$('#divshowhide2').click(function(){
-		$('#responsivediv').hide();
-  		$('#divshowhide2').hide();
-  		$('#divshowhide').show();
-  		$('#deleteexpdiv').show();
-	});
-
-  $('#dtid').DataTable();
-
-  var billTbl= $('#dtidbill').DataTable({
-        paging: true,
-        bFilter: true,
-        ordering:true,
-        searching: false,
-  });
-billTbl.column( '3' ).order( 'desc' ).draw();
-     $('.pdate').datebox({
-        mode: "calbox",
-        dateFormat: "%d-%m-%Y",
-        overrideDateFormat: "%d-%m-%Y",
+    $(".modal").on("hidden.bs.modal", function() {
+        $(this).removeData('bs.modal');
     });
-    */
-});
+    
+//    $('#dtid').DataTable();
+
+    $('.ls-modal').on('click', function(e){
+      e.preventDefault();
+      var remote_content = e.currentTarget.href;
+      $('#modal-response').on('show.bs.modal', function () {
+          $(this).find('.modal-content').load(remote_content);
+      }).modal('show');
+      
+      return false;
+    });
+})(jQuery);

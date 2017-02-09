@@ -13,56 +13,10 @@
 		<f:render partial="Misc/FlashMessages" arguments="{_all}" />
 		<f:if condition="{user}">
 			<f:then>
-                            <f:if condition="{user.billlimit}">
-                                <div class="row">
-                                    <div class="col-xs-4">Billing limit:</div>
-                                    <div class="col-xs-8">{user.billlimit}</div>
-                                </div>
-                            </f:if>
-                             <f:if condition="{user.annualfee}">
-                                <div class="row">
-                                    <div class="col-xs-4">Annual Fee:</div>
-                                    <div class="col-xs-8">Rs. {user.annualfee}/-</div>
-                                </div>
-                            </f:if>
-                            <f:if condition="{user.endtime}">
-                                <div class="row">
-                                    <div class="col-xs-4">Account Expiry:</div>
-                                    <div class="col-xs-8"><f:format.date format="d-M-Y">{user.endtime}</f:format.date></div>
-                                </div>
-                            </f:if>
                             <f:if condition="{user.username}">
                                 <div class="row">
                                     <div class="col-xs-4"><f:translate key="tx_femanager_domain_model_user.username" />:</div>
                                     <div class="col-xs-8">{user.username}</div>
-                                </div>
-                            </f:if>
-                            <div class="row">
-                                <div class="col-xs-4">SMS Notification:</div>
-                                <div class="col-xs-8"><f:if condition="{user.enablesms}">
-                                                    <f:then>
-                                                            YES
-                                                    </f:then>
-                                                    <f:else>
-                                                            No
-                                                    </f:else>
-                                            </f:if></div>
-                            </div>
-                            <f:if condition="{user.enablesms}">
-                                <div class="row">
-                                    <div class="col-xs-4">Additional SMS to self:</div>
-                                    <div class="col-xs-8"><f:if condition="{user.selfsms}">
-                                                        <f:then>
-                                                                YES
-                                                        </f:then>
-                                                        <f:else>
-                                                                No
-                                                        </f:else>
-                                                </f:if></div>
-                                </div>
-                                 <div class="row">
-                                    <div class="col-xs-4">SMS balance:</div>
-                                    <div class="col-xs-8">{user.smsbalance}</div>
                                 </div>
                             </f:if>
                             <f:if condition="{user.company}">
@@ -71,10 +25,10 @@
                                     <div class="col-xs-8">{user.company}</div>
                                 </div>
                             </f:if>
-                            <f:if condition="{user.servicetax}">
+                            <f:if condition="{user.name}">
                                 <div class="row">
-                                    <div class="col-xs-4"><f:translate key="tx_femanager_domain_model_user.servicetax" />:</div>
-                                    <div class="col-xs-8">{user.servicetax}</div>
+                                    <div class="col-xs-4"><f:translate key="tx_femanager_domain_model_user.name" />:</div>
+                                    <div class="col-xs-8">{user.name}</div>
                                 </div>
                             </f:if>
                              <f:if condition="{user.firstName}">
@@ -89,29 +43,10 @@
                                     <div class="col-xs-8">{user.lastName}</div>
                                 </div>
                             </f:if>
-                            
-                            <div class="row">
-                                    <div class="col-xs-4"><f:translate key="tx_femanager_domain_model_user.gender" />:</div>
-                                    <div class="col-xs-8"><f:if condition="{user.gender} == 0">
-							<f:then>
-								<f:translate key="tx_femanager_domain_model_user.gender.item0" />
-							</f:then>
-							<f:else>
-								<f:translate key="tx_femanager_domain_model_user.gender.item1" />
-							</f:else>
-						</f:if></div>
-                                </div>
                             <f:if condition="{user.email}">
                                 <div class="row">
                                     <div class="col-xs-4"><f:translate key="tx_femanager_domain_model_user.email" />:</div>
                                     <div class="col-xs-8">{user.email}</div>
-                                </div>
-                            </f:if>
-                                
-                            <f:if condition="{user.dateOfBirth}">
-                                <div class="row">
-                                    <div class="col-xs-4"><f:translate key="tx_femanager_domain_model_user.dateOfBirth" />:</div>
-                                    <div class="col-xs-8"><f:format.date format="{f:translate(key:'tx_femanager_domain_model_user.dateFormat')}">{user.dateOfBirth}</f:format.date></div>
                                 </div>
                             </f:if>
                             <f:if condition="{user.address}">
@@ -126,20 +61,24 @@
                                     <div class="col-xs-8">{user.city}</div>
                                 </div>
                             </f:if>
-                             <f:if condition="{user.zip}">
+                            <f:if condition="{user.zip}">
                                 <div class="row">
                                     <div class="col-xs-4"><f:translate key="tx_femanager_domain_model_user.zip" />:</div>
                                     <div class="col-xs-8">{user.zip}</div>
                                 </div>
                             </f:if>
-                           
-				<f:for each="{femanager:Misc.Explode(string:'{user.image}')}" as="image">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-					<f:image src="{uploadFolder}/{image}" alt="{user.firstName} {user.lastName}" width="250" />
-                                        </div>
-                                    </div>
-				</f:for>
+                            <f:if condition="{user.country}">
+                                <div class="row">
+                                    <div class="col-xs-4"><f:translate key="tx_femanager_domain_model_user.country" />:</div>
+                                    <div class="col-xs-8">{user.country}</div>
+                                </div>
+                            </f:if>
+                            <f:if condition="{user.www}">
+                                <div class="row">
+                                    <div class="col-xs-4"><f:translate key="tx_femanager_domain_model_user.www" />:</div>
+                                    <div class="col-xs-8">{user.www}</div>
+                                </div>
+                            </f:if>
 			</f:then>
 			<f:else>
 				<div class="femanager_note">

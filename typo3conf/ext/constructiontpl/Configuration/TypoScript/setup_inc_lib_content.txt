@@ -19,7 +19,7 @@ lib.moblogo {
     file.height = {$logoHeight}
     stdWrap {
         typolink.parameter = 2
-        typolink.ATagParams = class="mob-logo"
+        typolink.ATagParams = class="mob-logo navbar-brand"
         wrap = |
     }
 }

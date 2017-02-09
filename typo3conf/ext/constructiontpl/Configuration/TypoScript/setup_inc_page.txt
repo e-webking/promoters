@@ -16,14 +16,11 @@ config {
   # additionalHeaders = Content-Type:text/html;charset=utf-8
   simulateStaticDocuments = 0
   tx_realurl_enable = 1
-  linkVars = L
   uniqueLinkVars = 0
   language = en
   locale_all = en_EN.UTF-8
   htmlTag_langKey = en-EN
   sys_language_uid = 0
-  sys_language_mode = content_fallback:1,0
-  sys_language_overlay = 1
   spamProtectEmailAddresses = 1
   index_enable = 1
   index_externals = 1
@@ -69,34 +66,34 @@ page.10 {
     	rootPID.value = {$rootPID}
     }
 }
-page.bodyTag > 
+
 
 ## Include CSS & JS
 page.includeCSS {
     file1 = {$templatePath}Resources/Public/css/bootstrap.min.css
-    file2 = {$templatePath}Resources/Public/css/jquery.dataTables.min.css
-    file3 = {$templatePath}Resources/Public/css/font-awesome.min.css
-    file4 = {$templatePath}Resources/Public/css/navbar-static-top.css
-    file5 = {$templatePath}Resources/Public/css/mmenu.all.css
-    file6 = {$templatePath}Resources/Public/css/mmenu.positioning.css
-    file7 = {$templatePath}Resources/Public/css/jtsage-datebox-4.0.0.bootstrap.min.css
-    file8 = {$templatePath}Resources/Public/css/material-kit.css
+    file1.media = screen
+    file3 = {$templatePath}Resources/Public/css/navbar-static-top.css
+    file4 = {$templatePath}Resources/Public/css/font-awesome.min.css
+    file5 = {$templatePath}Resources/Public/css/jquery.dataTables.min.css
+#    file6 = {$templatePath}Resources/Public/css/mmenu.all.css
+#    file7 = {$templatePath}Resources/Public/css/mmenu.positioning.css
+    file8 = {$templatePath}Resources/Public/css/jtsage-datebox-4.0.0.bootstrap.min.css
     file9 = {$templatePath}Resources/Public/css/main.css
     
 
 }
-page.includeJSlibs {
+page.includeJSFooterlibs {
     jquery = {$templatePath}Resources/Public/js/jquery-2.1.4.min.js
     jquery.forceOnTop = 1
 #   jquery.compress = 1
 }
 page.includeJSFooter{
-    file1  = {$templatePath}Resources/Public/js/jquery-ui.min.js
-    file2  = {$templatePath}Resources/Public/js/bootstrap.min.js
+    file1  = {$templatePath}Resources/Public/js/bootstrap.min.js
+    file2  = {$templatePath}Resources/Public/js/jquery-ui.min.js
     file3  = {$templatePath}Resources/Public/js/jtsage-datebox-4.0.0.bootstrap.min.js
     file4  = {$templatePath}Resources/Public/js/jtsage-datebox.lang.utf8.js
     file5  = {$templatePath}Resources/Public/js/jquery.dataTables.min.js
-    file6  = {$templatePath}Resources/Public/js/jquery.mmenu.all.min.js
+#    file6  = {$templatePath}Resources/Public/js/jquery.mmenu.all.min.js
     file8  = {$templatePath}Resources/Public/js/function.js
 
 }
@@ -119,8 +116,8 @@ page.headerData.10 = TEXT
 page.headerData.10.value (
 
 <!--[if lt IE 9]>
-  <script src="{$templatePath}Resources/Public/js/assets/html5shiv.min.js"></script>
-  <script src="{$templatePath}Resources/Public/js/assets/respond.min.js"></script>
+  <script src="{$templatePath}Resources/Public/js/html5shiv.min.js"></script>
+  <script src="{$templatePath}Resources/Public/js/respond.min.js"></script>
 <![endif]-->
 
 )

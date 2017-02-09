@@ -1,26 +1,33 @@
-
-<f:layout name="Default" />
-
-This template displays a NEW form for the current domain object.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        New.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
-<f:section name="main">
-<h1>New Landlord</h1>
-
-<f:flashMessages />
-
-<f:render partial="FormErrors" arguments="{object:Landlord}" />
-
-<f:form action="create"  enctype="multipart/form-data"  name="newLandlord" object="{newLandlord}">
-<f:render partial="Landlord/FormFields" />
-	<f:form.submit value="Create new" />
-</f:form>
-</f:section>
+<f:if condition="{projects}">
+    <f:then>
+        <f:form action="create" name="newLandlord" object="{newLandlord}">
+            <div class="modal-header" style="background:lightgreen">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
+            <h4 class="modal-title" style="color:black">New Landlord</h4>
+            </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+        <f:render partial="Landlord/FormFields" arguments="{agent:agent, projects:projects}" />
+            </div>
+        </div>
+        <div class="modal-footer" style="background:lightgray">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <f:form.submit value="Add" class="btn btn-primary" />
+        </div>
+        </f:form>
+    </f:then>
+    <f:else>
+        <div class="modal-header" style="background:red">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
+            <h4 class="modal-title" style="color:white">New Landlord</h4>
+            </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                Please create project first!
+            </div>
+        </div>
+        <div class="modal-footer" style="background:lightgray">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </f:else>
+</f:if>

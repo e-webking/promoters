@@ -1,13 +1,15 @@
-
+<f:form.hidden property="agent" value="{agent}"/>
+<label for="project">Project</label><br />
+<f:form.select property="project" options="{projects}" optionLabelField="name" optionValueField="uid" class="form-control" /><br />
 <label for="name">
 	<f:translate key="tx_armconstructions_domain_model_landlord.name" />
 </label><br />
-	<f:form.textfield property="name" /><br />
+	<f:form.textfield property="name" class="form-control" /><br />
 <label for="phone">
 	<f:translate key="tx_armconstructions_domain_model_landlord.phone" />
 </label><br />
-	<f:form.textfield property="phone" /><br />
+	<f:form.textfield property="phone" class="form-control" /><br />
 <label for="address">
 	<f:translate key="tx_armconstructions_domain_model_landlord.address" />
 </label><br />
-	<f:form.textfield property="address" /><br />
+	<f:form.textfield property="address" class="form-control" /><br />

@@ -73,7 +73,7 @@ class MaterialController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function newAction()
     {
-        
+         $this->view->assign('agent', $this->agent);
     }
     
     /**

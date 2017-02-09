@@ -33,6 +33,14 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 {
 
     /**
+     * projectRepository
+     *
+     * @var \ARM\Armconstructions\Domain\Repository\ProjectRepository
+     * @inject
+     */
+    protected $projectRepository = NULL;
+    
+    /**
      * landlordRepository
      *
      * @var \ARM\Armconstructions\Domain\Repository\LandlordRepository
@@ -61,7 +69,7 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function listAction()
     {
-        $landlords = $this->landlordRepository->findAll();
+        $landlords = $this->landlordRepository->findByAgent($this->agent);
         $this->view->assign('landlords', $landlords);
     }
     
@@ -72,7 +80,9 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function newAction()
     {
-        
+        $projects = $this->projectRepository->findByAgent($this->agent);
+        $this->view->assign('projects',$projects);
+        $this->view->assign('agent', $this->agent);
     }
     
     /**
@@ -83,9 +93,27 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function createAction(\ARM\Armconstructions\Domain\Model\Landlord $newLandlord)
     {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->addFlashMessage('Landloard created successfully', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->landlordRepository->add($newLandlord);
-        $this->redirect('list');
+        
+        if ($this->request->hasArgument('returnpage')) {
+            
+            $pageid = $this->request->getArgument('returnpage');
+            
+            if ($this->request->hasArgument('project')) {
+                $project = $this->request->getArgument('project');
+            } 
+            if ($this->request->hasArgument('pageaction')) {
+                $pageaction = $this->request->getArgument('pageaction');
+            }
+            $link = $this->uriBuilder->setTargetPageUid($pageid)
+                       ->setArguments(array('tx_armconstructions_project' => array('action' => $pageaction, 'project' => $project)))
+                       ->build();
+            $this->redirectToUri($link);
+            
+        } else {
+             $this->redirect('list');
+        }
     }
     
     /**
@@ -97,6 +125,9 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function editAction(\ARM\Armconstructions\Domain\Model\Landlord $landlord)
     {
+        $projects = $this->projectRepository->findByAgent($this->agent);
+        $this->view->assign('projects',$projects);
+        $this->view->assign('agent', $this->agent);
         $this->view->assign('landlord', $landlord);
     }
     
@@ -108,9 +139,38 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function updateAction(\ARM\Armconstructions\Domain\Model\Landlord $landlord)
     {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->addFlashMessage('Landlord record updated successfully.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->landlordRepository->update($landlord);
-        $this->redirect('list');
+        if ($this->request->hasArgument('returnpage')) {
+            
+            $pageid = $this->request->getArgument('returnpage');
+            
+            if ($this->request->hasArgument('project')) {
+                $project = $this->request->getArgument('project');
+            } 
+            if ($this->request->hasArgument('pageaction')) {
+                $pageaction = $this->request->getArgument('pageaction');
+            }
+            $link = $this->uriBuilder->setTargetPageUid($pageid)
+                       ->setArguments(array('tx_armconstructions_project' => array('action' => $pageaction, 'project' => $project)))
+                       ->build();
+            $this->redirectToUri($link);
+            
+        } else {
+             $this->redirect('list');
+        }
+    }
+    
+    /**
+     * action predel
+     *
+     * @param \ARM\Armconstructions\Domain\Model\Landlord $landlord
+     * @ignorevalidation $supplier
+     * @return void
+     */
+    public function predelAction(\ARM\Armconstructions\Domain\Model\Landlord $landlord)
+    {
+        $this->view->assign('landlord', $landlord);
     }
     
     /**
@@ -121,7 +181,7 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function deleteAction(\ARM\Armconstructions\Domain\Model\Landlord $landlord)
     {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->addFlashMessage('Landlord removed successfully.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->landlordRepository->remove($landlord);
         $this->redirect('list');
     }

@@ -1,22 +1,91 @@
-
+{namespace t=Helhum\TyposcriptRendering\ViewHelpers}
+{namespace arm=ARM\Armconstructions\ViewHelpers}
 <f:layout name="Default" />
-
-This Template is responsible for displaying a single view for a domain object
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        Show.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
-<h1>Single View for Project</h1>
-
-<f:flashMessages />
-<f:render partial="Project/Properties" arguments="{project:project}" />
-<f:link.action action="list">Back to list</f:link.action><br />
-<f:link.action action="new">New Project</f:link.action>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <center>Project: {project.name} [{project.address}]</center>
+        </div>
+        <div class="panel-body">
+            <f:flashMessages />
+            <br>
+            <div class="row">
+                <div class="col-sm-4">Total Expense Rs.: <arm:expense project="{project.uid}" /></div>
+                <div class="col-sm-4">Total Payment Rs.: <arm:payment project="{project.uid}" /></div>
+                <div class="col-sm-4">Total Income Rs.: <arm:income project="{project.uid}" /></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10"><h3 class="text-center">Expense List</h3></div>
+                <div class="col-xs-2"><a href="{t:uri.ajaxAction(action: 'addmat', controller: 'Project', pluginName: 'Project', arguments:'{project : project}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-plus"></i></a></div>
+            </div>
+                <f:if condition="{project.materials}">
+                    <div class="table-responsive">
+                        <table  class="table table-bordered table-hover table-striped" id="dtexp">
+                            <thead>
+                                <tr>
+                                    <th>Sr. No.</th>
+                                    <th>Date</th>
+                                    <th>Particular/Challan</th>
+                                    <th>Rate</th>
+                                    <th>Qty</th>
+                                    <th>Amount (Rs.)</th>
+                                    <th>Supplier</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <f:for each="{project.materials}" as="expense" iteration="row">
+                                <tr>
+                                    <td>{row.cycle}</td>
+                                    <td><f:format.date format="d.m.Y">{expense.sdate}</f:format.date></td>
+                                    <td>{expense.name} [{expense.challan}]</td>
+                                    <td>{expense.rate}</td>
+                                    <td>{expense.qty}</td>
+                                    <td>{expense.amount}</td>
+                                    <td><f:if condition="{expense.supplier}"><f:then>{expense.supplier.name}</f:then><f:else>-</f:else></f:if></td>
+                                    <td class="text-center"><a href="{t:uri.ajaxAction(action: 'editmat', controller: 'Project', pluginName: 'Project', arguments:'{expense : expense}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-pencil"></i></a></td>
+                                    <td class="text-center"><a href="{t:uri.ajaxAction(action: 'predelmat', controller: 'Project', pluginName: 'Project', arguments:'{expense : expense}')}" class="btn btn-sm btn-circle btn-danger ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-trash-o"></i></a></td>
+                                </tr>
+                            </f:for>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5"></td>
+                                    <td colspan="4"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </f:if>
+             <div class="row">
+                <div class="col-xs-10"><h3 class="text-center">Payment List</h3></div>
+                <div class="col-xs-2"><a href="{t:uri.ajaxAction(action: 'addpay', controller: 'Project', pluginName: 'Project', arguments:'{project : project}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-plus"></i></a></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <f:link.action action="list">Back to list</f:link.action>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+             
+             var expTbl= $('#dtexp').DataTable({
+                    paging: false,
+                    bFilter: false,
+                    ordering:true,
+                    searching: true,
+                    "drawCallback": function() {
+                        var api = this.api();
+                        // Total over all pages
+                        var total = api.column(5).data().sum();
+                        // Total over this page
+                        var pageTotal = api.column(5, {page:'current'}).data().sum();
+                        $(api.column(5).footer()).html('Rs. ' + pageTotal + '/-');
+                    }
+              });
+            expTbl.column( '1' ).order( 'desc' ).draw();
+        });
+    </script>
 </f:section>

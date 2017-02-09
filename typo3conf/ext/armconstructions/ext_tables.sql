@@ -128,7 +128,7 @@ CREATE TABLE tx_armconstructions_domain_model_project (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+        KEY language (l10n_parent,sys_language_uid)
 
 );
 
@@ -191,8 +191,7 @@ CREATE TABLE tx_armconstructions_domain_model_material (
 	rate varchar(255) DEFAULT '' NOT NULL,
 	qty double(11,2) DEFAULT '0.00' NOT NULL,
 	amount int(11) DEFAULT '0' NOT NULL,
-	transport int(11) DEFAULT '0' NOT NULL,
-	misc int(11) DEFAULT '0' NOT NULL,
+	challan varchar(50) DEFAULT '' NOT NULL,
 	sdate int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -232,6 +231,7 @@ CREATE TABLE tx_armconstructions_domain_model_payment (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
+        voucher varchar(50) DEFAULT '' NOT NULL,
 	pdate int(11) DEFAULT '0' NOT NULL,
 	amount int(11) DEFAULT '0' NOT NULL,
 	mode int(11) DEFAULT '0' NOT NULL,

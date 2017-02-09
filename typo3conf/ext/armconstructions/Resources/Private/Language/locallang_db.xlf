@@ -93,11 +93,8 @@
 			<trans-unit id="tx_armconstructions_domain_model_material.amount">
 				<source>Amount</source>
 			</trans-unit>
-			<trans-unit id="tx_armconstructions_domain_model_material.transport">
-				<source>Transport</source>
-			</trans-unit>
-			<trans-unit id="tx_armconstructions_domain_model_material.misc">
-				<source>Misc</source>
+			<trans-unit id="tx_armconstructions_domain_model_material.challan">
+				<source>Challan</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_material.sdate">
 				<source>Sdate</source>
@@ -128,6 +125,9 @@
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_payment.supplier">
 				<source>Supplier</source>
+			</trans-unit>
+                        <trans-unit id="tx_armconstructions_domain_model_payment.voucher">
+				<source>Voucher</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_payment.project">
 				<source>Project</source>

@@ -1,29 +1,30 @@
-
-<label for="name">
-	<f:translate key="tx_armconstructions_domain_model_material.name" />
+<f:form.hidden property="agent" value="{agent}"/>
+<f:form.hidden property="project" value="{project}"/>
+<label for="supplier">
+	Supplier
 </label><br />
-	<f:form.textfield property="name" /><br />
-<label for="rate">
-	<f:translate key="tx_armconstructions_domain_model_material.rate" />
-</label><br />
-	<f:form.textfield property="rate" /><br />
-<label for="qty">
-	<f:translate key="tx_armconstructions_domain_model_material.qty" />
-</label><br />
-	<f:form.textfield property="qty" /><br />
-<label for="amount">
-	<f:translate key="tx_armconstructions_domain_model_material.amount" />
-</label><br />
-	<f:form.textfield property="amount" /><br />
-<label for="transport">
-	<f:translate key="tx_armconstructions_domain_model_material.transport" />
-</label><br />
-	<f:form.textfield property="transport" /><br />
-<label for="misc">
-	<f:translate key="tx_armconstructions_domain_model_material.misc" />
-</label><br />
-	<f:form.textfield property="misc" /><br />
+<f:form.select property="supplier" options="{suppliers}" optionLabelField="name" optionValueField="uid" prependOptionLabel="Direct" prependOptionValue="0" class="form-control" /><br />
 <label for="sdate">
 	<f:translate key="tx_armconstructions_domain_model_material.sdate" />
 </label><br />
-	<f:form.textfield property="sdate"  value="{material.sdate->f:format.date()}" /><br />
+	<f:form.textfield property="sdate" placeholder="DD-MM-YYYY" value="{expense.sdate->f:format.date(format:'d-m-Y')}" class="form-control pdate" /><br />
+<label for="challan">
+	<f:translate key="tx_armconstructions_domain_model_material.challan" />
+</label><br />
+	<f:form.textfield property="challan" class="form-control" /><br />
+<label for="name">
+	<f:translate key="tx_armconstructions_domain_model_material.name" />
+</label><br />
+	<f:form.textfield property="name" class="form-control" /><br />
+<label for="rate">
+	<f:translate key="tx_armconstructions_domain_model_material.rate" />
+</label><br />
+	<f:form.textfield property="rate" class="form-control" /><br />
+<label for="qty">
+	<f:translate key="tx_armconstructions_domain_model_material.qty" />
+</label><br />
+	<f:form.textfield property="qty" class="form-control" /><br />
+<label for="amount">
+	<f:translate key="tx_armconstructions_domain_model_material.amount" />
+</label><br />
+	<f:form.textfield property="amount" class="form-control" /><br />

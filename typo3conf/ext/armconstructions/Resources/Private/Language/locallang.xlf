@@ -93,14 +93,11 @@
 			<trans-unit id="tx_armconstructions_domain_model_material.amount">
 				<source>Amount</source>
 			</trans-unit>
-			<trans-unit id="tx_armconstructions_domain_model_material.transport">
-				<source>Transport</source>
-			</trans-unit>
-			<trans-unit id="tx_armconstructions_domain_model_material.misc">
-				<source>Misc</source>
+			<trans-unit id="tx_armconstructions_domain_model_material.challan">
+				<source>Challan</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_material.sdate">
-				<source>Sdate</source>
+				<source>Supply date</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_material.supplier">
 				<source>Supplier</source>
@@ -121,16 +118,19 @@
 				<source>Mode</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_payment.instrumentno">
-				<source>Instrumentno</source>
+				<source>Cheque details</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_payment.payto">
-				<source>Payto</source>
+				<source>Paid to</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_payment.supplier">
 				<source>Supplier</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_payment.project">
 				<source>Project</source>
+			</trans-unit>
+                        <trans-unit id="tx_armconstructions_domain_model_payment.voucher">
+				<source>Voucher</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_payment.landlord">
 				<source>Landlord</source>
@@ -139,7 +139,7 @@
 				<source>Income</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_income.pdate">
-				<source>Pdate</source>
+				<source>Date</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_income.amount">
 				<source>Amount</source>
@@ -148,7 +148,7 @@
 				<source>Mode</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_income.instrumentno">
-				<source>Instrumentno</source>
+				<source>Cheque details</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_income.particular">
 				<source>Particular</source>

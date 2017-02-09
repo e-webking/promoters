@@ -73,7 +73,7 @@ class IncomeController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function newAction()
     {
-        
+         $this->view->assign('agent', $this->agent);
     }
     
     /**

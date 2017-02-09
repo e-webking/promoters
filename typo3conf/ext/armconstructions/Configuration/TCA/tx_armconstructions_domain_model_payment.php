@@ -2,7 +2,9 @@
 return array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:armconstructions/Resources/Private/Language/locallang_db.xlf:tx_armconstructions_domain_model_payment',
-		'label' => 'pdate',
+		'label' => 'voucher',
+                'label_alt' => 'pdate, amount',
+                'label_alt_force' => TRUE,
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -19,14 +21,14 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'pdate,amount,mode,instrumentno,payto,supplier,project,landlord,',
+		'searchFields' => 'pdate,voucher,amount,mode,instrumentno,payto,supplier,project,landlord,',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('armconstructions') . 'Resources/Public/Icons/tx_armconstructions_domain_model_payment.gif'
 	),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, agent, pdate, amount, mode, instrumentno, payto, supplier, project, landlord',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, agent, voucher, pdate, amount, mode, instrumentno, payto, supplier, project, landlord',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, agent, pdate, amount, mode, instrumentno, payto, supplier, project, landlord, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, agent, voucher, pdate, amount, mode, instrumentno, payto, supplier, project, landlord, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -126,6 +128,15 @@ return array(
 				'maxitems' => 1,
 			),
 		),
+                'voucher' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:armconstructions/Resources/Private/Language/locallang_db.xlf:tx_armconstructions_domain_model_payment.voucher',
+			'config' => array(
+				'type' => 'input',
+				'size' => 10,
+				'eval' => 'trim'
+			)
+		),
 		'pdate' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:armconstructions/Resources/Private/Language/locallang_db.xlf:tx_armconstructions_domain_model_payment.pdate',
@@ -194,6 +205,9 @@ return array(
 				'foreign_table' => 'tx_armconstructions_domain_model_supplier',
 				'minitems' => 0,
 				'maxitems' => 1,
+                                'items' => array(
+					array('-- None --', 0),
+                                 ),
 			),
 		),
 		'project' => array(
@@ -216,6 +230,9 @@ return array(
 				'foreign_table' => 'tx_armconstructions_domain_model_landlord',
 				'minitems' => 0,
 				'maxitems' => 1,
+                                 'items' => array(
+					array('-- None --', 0),
+                                 ),
 			),
 		),
 	),

@@ -61,7 +61,7 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function listAction()
     {
-        $suppliers = $this->supplierRepository->findAll();
+        $suppliers = $this->supplierRepository->findByAgent($this->agent);
         $this->view->assign('suppliers', $suppliers);
     }
     
@@ -72,7 +72,7 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function newAction()
     {
-        
+         $this->view->assign('agent', $this->agent);
     }
     
     /**
@@ -97,6 +97,7 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function editAction(\ARM\Armconstructions\Domain\Model\Supplier $supplier)
     {
+        $this->view->assign('agent', $this->agent);
         $this->view->assign('supplier', $supplier);
     }
     

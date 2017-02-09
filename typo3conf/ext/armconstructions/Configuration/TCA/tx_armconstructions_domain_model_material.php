@@ -19,14 +19,14 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'name,rate,qty,amount,transport,misc,sdate,supplier,project,',
+		'searchFields' => 'name,rate,qty,amount,challan,sdate,supplier,project,',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('armconstructions') . 'Resources/Public/Icons/tx_armconstructions_domain_model_material.gif'
 	),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, agent, name, rate, qty, amount, transport, misc, sdate, supplier, project',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, agent, name, rate, qty, amount, challan, sdate, supplier, project',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, agent, name, rate, qty, amount, transport, misc, sdate, supplier, project, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, agent, name, rate, qty, amount, challan, sdate, supplier, project, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -162,22 +162,13 @@ return array(
 				'eval' => 'int'
 			)
 		),
-		'transport' => array(
+		'challan' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:armconstructions/Resources/Private/Language/locallang_db.xlf:tx_armconstructions_domain_model_material.transport',
+			'label' => 'LLL:EXT:armconstructions/Resources/Private/Language/locallang_db.xlf:tx_armconstructions_domain_model_material.challan',
 			'config' => array(
 				'type' => 'input',
-				'size' => 4,
-				'eval' => 'int'
-			)
-		),
-		'misc' => array(
-			'exclude' => 1,
-			'label' => 'LLL:EXT:armconstructions/Resources/Private/Language/locallang_db.xlf:tx_armconstructions_domain_model_material.misc',
-			'config' => array(
-				'type' => 'input',
-				'size' => 4,
-				'eval' => 'int'
+				'size' => 10,
+				'eval' => 'trim'
 			)
 		),
 		'sdate' => array(
@@ -198,6 +189,9 @@ return array(
 				'type' => 'select',
 				'renderType' => 'selectSingle',
 				'foreign_table' => 'tx_armconstructions_domain_model_supplier',
+                                'items' => array(
+					array('Direct', 0),
+				),
 				'minitems' => 0,
 				'maxitems' => 1,
 			),

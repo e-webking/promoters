@@ -1,41 +1,45 @@
-
+{namespace t=Helhum\TyposcriptRendering\ViewHelpers}
+{namespace arm=ARM\Armconstructions\ViewHelpers}
 <f:layout name="Default" />
-
-This Template is responsible for creating a table of domain objects.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
-<h1>Listing for Landlord</h1>
-
-<f:flashMessages />
-
-<table  class="tx_armconstructions" >
-	<tr>
-		<th><f:translate key="tx_armconstructions_domain_model_landlord.name" /></th>
-		<th><f:translate key="tx_armconstructions_domain_model_landlord.phone" /></th>
-		<th><f:translate key="tx_armconstructions_domain_model_landlord.address" /></th>
-		<th> </th>
-		<th> </th>
-	</tr>
-
-	<f:for each="{landlords}" as="landlord">
-		<tr>
-			<td><f:link.action action="show" arguments="{landlord : landlord}"> {landlord.name}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{landlord : landlord}"> {landlord.phone}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{landlord : landlord}"> {landlord.address}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{landlord : landlord}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{landlord : landlord}">Delete</f:link.action></td>
-		</tr>
-	</f:for>
-</table>
-
-<f:link.action action="new">New Landlord</f:link.action>
+<div class="panel panel-default">
+        <div class="panel-heading">
+            <center>Landlords</center>
+        </div>
+        <div class="panel-body">
+           <f:flashMessages />
+           <div class="text-right">
+                <a href="{t:uri.ajaxAction(action: 'new', controller: 'Landlord', pluginName: 'Landlord')}" class="btn btn-circle btn-lg btn-primary ls-modal" data-toggle="modal" data-target="#modal-response" data-show="true"><i class="fa fa-plus"></i></a>
+            </div>
+           <br>
+           <div class="table-responsive">
+               <f:if condition="{landlords}">
+                    <table  class="table table-bordered table-hover table-striped" id="dtid">
+                     <thead>
+                         <tr>
+                             <th><f:translate key="tx_armconstructions_domain_model_landlord.name" /></th>
+                             <th><f:translate key="tx_armconstructions_domain_model_landlord.phone" /></th>
+                             <th><f:translate key="tx_armconstructions_domain_model_landlord.address" /></th>
+                             <th>Project</th>
+                             <th>Edit</th>
+                             <th>Delete</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                     <f:for each="{landlords}" as="landlord">
+                         <tr>
+                             <td>{landlord.name}</td>
+                             <td>{landlord.phone}</td>
+                             <td>{landlord.address}</td>
+                             <td>{landlord.project.name}</td>
+                             <td class="text-center"><a href="{t:uri.ajaxAction(action: 'edit', controller: 'Landlord', pluginName: 'Landlord', arguments:'{landlord : landlord}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-pencil"></i></a></td>
+                             <td class="text-center"><a href="{t:uri.ajaxAction(action: 'predel', controller: 'Landlord', pluginName: 'Landlord', arguments:'{landlord : landlord}')}" class="btn btn-sm btn-circle btn-danger ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-trash-o"></i></a></td>
+                         </tr>
+                     </f:for>
+                     </tbody>
+                    </table>
+               </f:if>
+           </div>
+        </div>
+</div>
 </f:section>

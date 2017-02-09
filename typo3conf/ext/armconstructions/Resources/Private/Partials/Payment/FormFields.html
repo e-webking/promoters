@@ -1,21 +1,26 @@
-
-<label for="pdate">
-	<f:translate key="tx_armconstructions_domain_model_payment.pdate" />
-</label><br />
-	<f:form.textfield property="pdate"  value="{payment.pdate->f:format.date()}" /><br />
-<label for="amount">
-	<f:translate key="tx_armconstructions_domain_model_payment.amount" />
-</label><br />
-	<f:form.textfield property="amount" /><br />
-<label for="mode">
-	<f:translate key="tx_armconstructions_domain_model_payment.mode" />
-</label><br />
-	<f:form.textfield property="mode" /><br />
-<label for="instrumentno">
-	<f:translate key="tx_armconstructions_domain_model_payment.instrumentno" />
-</label><br />
-	<f:form.textfield property="instrumentno" /><br />
+<f:form.hidden property="agent" value="{agent}"/>
+<f:form.hidden property="project" value="{project}"/>
 <label for="payto">
 	<f:translate key="tx_armconstructions_domain_model_payment.payto" />
 </label><br />
-	<f:form.textfield property="payto" /><br />
+	<f:form.select property="payto" options="{0: 'Supplier', 1: 'Landlord'}"  class="form-control" /><br />
+<label for="supplier">Supplier</label><br />
+<f:form.select property="supplier" options="{suppliers}" optionLabelField="name" optionValueField="uid" prependOptionLabel="-- Select --" prependOptionValue="0" class="form-control" /><br />
+<label for="supplier">Landlord</label><br />
+<f:form.select property="landlord" options="{landlords}" optionLabelField="name" optionValueField="uid" prependOptionLabel="-- Select --" prependOptionValue="0" class="form-control" /><br />
+<label for="pdate">
+	<f:translate key="tx_armconstructions_domain_model_payment.pdate" />
+</label><br />
+	<f:form.textfield property="pdate" placeholder="DD-MM-YYYY" value="{payment.pdate->f:format.date(format:'d-m-Y')}" class="form-control pdate" /><br />
+<label for="amount">
+	<f:translate key="tx_armconstructions_domain_model_payment.amount" />
+</label><br />
+	<f:form.textfield property="amount" class="form-control" /><br />
+<label for="mode">
+	<f:translate key="tx_armconstructions_domain_model_payment.mode" />
+</label><br />
+	<f:form.select property="mode" options="{0:'Cash', 1:'Cheque'}" class='form-control' /><br />
+<label for="instrumentno">
+	<f:translate key="tx_armconstructions_domain_model_payment.instrumentno" />
+</label><br />
+	<f:form.textfield property="instrumentno" class="form-control" /><br />

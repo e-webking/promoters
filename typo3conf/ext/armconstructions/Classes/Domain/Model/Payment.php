@@ -61,6 +61,13 @@ class Payment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $instrumentno = '';
     
     /**
+     * voucher
+     *
+     * @var string
+     */
+    protected $voucher = '';
+    
+    /**
      * payto
      *
      * @var int
@@ -236,9 +243,10 @@ class Payment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the supplier
      *
      * @param \ARM\Armconstructions\Domain\Model\Supplier $supplier
+     * @dontvalidate $supplier
      * @return void
      */
-    public function setSupplier(\ARM\Armconstructions\Domain\Model\Supplier $supplier)
+    public function setSupplier(\ARM\Armconstructions\Domain\Model\Supplier $supplier=NULL)
     {
         $this->supplier = $supplier;
     }
@@ -278,11 +286,32 @@ class Payment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the landlord
      *
      * @param \ARM\Armconstructions\Domain\Model\Landlord $landlord
+     * @dontvalidate $landlord
      * @return void
      */
-    public function setLandlord(\ARM\Armconstructions\Domain\Model\Landlord $landlord)
+    public function setLandlord(\ARM\Armconstructions\Domain\Model\Landlord $landlord=NULL)
     {
         $this->landlord = $landlord;
     }
 
+    /**
+     * Returns the voucher
+     *
+     * @return string $voucher
+     */
+    public function getVoucher()
+    {
+        return $this->voucher;
+    }
+    
+    /**
+     * Sets the voucher
+     *
+     * @param string $voucher
+     * @return void
+     */
+    public function setVoucher($voucher)
+    {
+        $this->voucher = $voucher;
+    }
 }

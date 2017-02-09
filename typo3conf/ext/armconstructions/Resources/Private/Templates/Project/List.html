@@ -1,41 +1,49 @@
-
+{namespace t=Helhum\TyposcriptRendering\ViewHelpers}
+{namespace arm=ARM\Armconstructions\ViewHelpers}
 <f:layout name="Default" />
-
-This Template is responsible for creating a table of domain objects.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
-<h1>Listing for Project</h1>
-
-<f:flashMessages />
-
-<table  class="tx_armconstructions" >
-	<tr>
-		<th><f:translate key="tx_armconstructions_domain_model_project.name" /></th>
-		<th><f:translate key="tx_armconstructions_domain_model_project.address" /></th>
-		<th><f:translate key="tx_armconstructions_domain_model_project.photos" /></th>
-		<th> </th>
-		<th> </th>
-	</tr>
-
-	<f:for each="{projects}" as="project">
-		<tr>
-			<td><f:link.action action="show" arguments="{project : project}"> {project.name}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{project : project}"> {project.address}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{project : project}"> {project.photos.originalResource.name}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{project : project}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{project : project}">Delete</f:link.action></td>
-		</tr>
-	</f:for>
-</table>
-
-<f:link.action action="new">New Project</f:link.action>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <center>Projects</center>
+        </div>
+        <div class="panel-body">
+           <f:flashMessages />
+           <div class="text-right">
+                <a href="{t:uri.ajaxAction(action: 'new', controller: 'Project', pluginName: 'Project')}" class="btn btn-circle btn-lg btn-primary ls-modal" data-toggle="modal" data-target="#modal-response" data-show="true"><i class="fa fa-plus"></i></a>
+            </div>
+           <br>
+           <div class="table-responsive">
+            <f:if condition="{projects}">
+                 <table  class="table table-bordered table-hover table-striped" id="dtid">
+                     <thead>
+                         <tr>
+                             <th><f:translate key="tx_armconstructions_domain_model_project.name" /></th>
+                             <th><f:translate key="tx_armconstructions_domain_model_project.address" /></th>
+                             <th>Expenses (Rs)</th>
+                             <th>Payment (Rs)</th>
+                             <th>Income (Rs)</th>
+                             <th>Detail </th>
+                             <th>Edit</th>
+                             <th>Delete</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <f:for each="{projects}" as="project">
+                            <tr>
+                                <td><f:link.action action="show" arguments="{project : project}"> {project.name}</f:link.action></td>
+                                <td><f:link.action action="show" arguments="{project : project}"> {project.address}</f:link.action></td>
+                                <td><arm:expense project="{project.uid}" /></td>
+                                <td><arm:payment project="{project.uid}" /></td>
+                                <td><arm:income project="{project.uid}" /></td>
+                                <td class="text-center"><f:link.action action="show" arguments="{project : project}" class="btn btn-sm btn-circle btn-success"><i class="fa fa-pencil"></i></f:link.action></td>
+                                <td class="text-center"><a href="{t:uri.ajaxAction(action: 'edit', controller: 'Project', pluginName: 'Project', arguments:'{project : project}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-pencil"></i></a></td>
+                                <td class="text-center"><a href="{t:uri.ajaxAction(action: 'predel', controller: 'Project', pluginName: 'Project', arguments:'{project : project}')}" class="btn btn-sm btn-circle btn-danger ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-trash-o"></i></a></td>
+                            </tr>
+                        </f:for>
+                     </tbody>
+                 </table>
+            </f:if>
+            </div>
+        </div>
+    </div>
 </f:section>

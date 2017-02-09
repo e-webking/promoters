@@ -1,11 +1,11 @@
-<f:form action="create"  enctype="multipart/form-data"  name="newProject" object="{newProject}">
+<f:form action="createpay"  name="payment" object="{payment}">
 <div class="modal-header" style="background:lightgreen">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
-    <h4 class="modal-title" style="color:black">New Project</h4>
+    <h4 class="modal-title" style="color:black">Add Payment</h4>
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-        <f:render partial="Project/FormFields" arguments="{agent:agent}" />
+        <f:render partial="Payment/FormFields" arguments="{_all}"/>
     </div>
 </div>
 <div class="modal-footer" style="background:lightgray">
@@ -13,3 +13,12 @@
     <f:form.submit value="Add" class="btn btn-primary" />
 </div>
 </f:form>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.pdate').datebox({
+            mode: "calbox",
+            dateFormat: "%d-%m-%Y",
+            overrideDateFormat: "%d-%m-%Y",
+        });
+    });
+</script>

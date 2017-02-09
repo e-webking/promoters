@@ -61,18 +61,12 @@ class Material extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $amount = 0;
     
     /**
-     * transport
+     * challan
      *
-     * @var int
+     * @var string
      */
-    protected $transport = 0;
+    protected $challan = '';
     
-    /**
-     * misc
-     *
-     * @var int
-     */
-    protected $misc = 0;
     
     /**
      * sdate
@@ -209,45 +203,24 @@ class Material extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
     
     /**
-     * Returns the transport
+     * Returns the challan
      *
-     * @return int $transport
+     * @return string $challan
      */
-    public function getTransport()
+    public function getChallan()
     {
-        return $this->transport;
+        return $this->challan;
     }
     
     /**
-     * Sets the transport
+     * Sets the challan
      *
-     * @param int $transport
+     * @param string $challan
      * @return void
      */
-    public function setTransport($transport)
+    public function setChallan($challan)
     {
-        $this->transport = $transport;
-    }
-    
-    /**
-     * Returns the misc
-     *
-     * @return int $misc
-     */
-    public function getMisc()
-    {
-        return $this->misc;
-    }
-    
-    /**
-     * Sets the misc
-     *
-     * @param int $misc
-     * @return void
-     */
-    public function setMisc($misc)
-    {
-        $this->misc = $misc;
+        $this->challan = $challan;
     }
     
     /**
@@ -285,9 +258,10 @@ class Material extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the supplier
      *
      * @param \ARM\Armconstructions\Domain\Model\Supplier $supplier
+     * @dontvalidate $supplier
      * @return void
      */
-    public function setSupplier(\ARM\Armconstructions\Domain\Model\Supplier $supplier)
+    public function setSupplier(\ARM\Armconstructions\Domain\Model\Supplier $supplier=NULL)
     {
         $this->supplier = $supplier;
     }

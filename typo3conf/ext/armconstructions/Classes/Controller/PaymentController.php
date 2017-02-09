@@ -72,7 +72,7 @@ class PaymentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function newAction()
     {
-        
+         $this->view->assign('agent', $this->agent);
     }
     
     /**

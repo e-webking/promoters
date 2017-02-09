@@ -31,6 +31,6 @@ namespace ARM\Armconstructions\Domain\Repository;
  */
 class LandlordRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
-
+    protected $defaultOrderings = array('name' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING);
     
 }

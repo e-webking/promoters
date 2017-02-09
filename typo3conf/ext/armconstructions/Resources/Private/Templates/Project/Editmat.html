@@ -1,11 +1,11 @@
-<f:form action="update" name="project" object="{project}" >
+<f:form action="updatemat" name="expense" object="{expense}" >
     <div class="modal-header" style="background:lightgreen">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
-    <h4 class="modal-title" style="color:black">Edit Supplier</h4>
+    <h4 class="modal-title" style="color:black">Edit Material Supply</h4>
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-        <f:render partial="Project/FormFields" arguments="{project:project, agent:agent}" />
+         <f:render partial="Material/FormFields" arguments="{_all}"/>
     </div>
 </div>
 <div class="modal-footer" style="background:lightgray">
@@ -13,3 +13,12 @@
     <f:form.submit value="Update" class="btn btn-primary" />
 </div>
 </f:form>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.pdate').datebox({
+            mode: "calbox",
+            dateFormat: "%d-%m-%Y",
+            overrideDateFormat: "%d-%m-%Y",
+        });
+    });
+</script>

@@ -21,12 +21,12 @@ if (!defined('TYPO3_MODE')) {
 	'ARM.' . $_EXTKEY,
 	'Landlord',
 	array(
-		'Landlord' => 'list, new, create, edit, update',
+		'Landlord' => 'list, new, create, edit, update, predel, delete',
 		
 	),
 	// non-cacheable actions
 	array(
-		'Landlord' => 'list, new, create, edit, update',
+		'Landlord' => 'list, new, create, edit, update, predel, delete',
 		
 	)
 );
@@ -49,12 +49,10 @@ if (!defined('TYPO3_MODE')) {
 	'ARM.' . $_EXTKEY,
 	'Project',
 	array(
-		'Project' => 'list, new, create, edit, update, addmat, createmat, editmat, updatemat, delmat, addpay, createpay, editpay, addpay, createpay, editpay, updatepay, delpay',
-		
+            'Project' => 'list, new, create, show, edit, update, predel, delete, addmat, createmat, editmat, updatemat, predelmat, delmat, addpay, createpay, editpay, addpay, createpay, editpay, updatepay, predelpay, delpay',
 	),
 	// non-cacheable actions
 	array(
-		'Project' => 'list, new, create, edit, update, addmat, createmat, editmat, updatemat, delmat, addpay, createpay, editpay, addpay, createpay, editpay, updatepay, delpay',
-		
+            'Project' => 'list, new, create, show, edit, update, predel, delete, addmat, createmat, editmat, updatemat, predelmat, delmat, addpay, createpay, editpay, addpay, createpay, editpay, updatepay, predelpay, delpay',	
 	)
 );

@@ -31,7 +31,6 @@ namespace ARM\Armconstructions\Controller;
  */
 class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-
     /**
      * projectRepository
      *
@@ -80,8 +79,18 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function newAction()
     {
+        if ($this->request->hasArgument('project')) {
+            $this->view->assign('project', $this->request->getArgument('project'));
+        }
+        if ($this->request->hasArgument('pageid')) {
+            $this->view->assign('returnpage', $this->request->getArgument('pageid'));
+        }
+        if ($this->request->hasArgument('pageaction')) {
+            $this->view->assign('pageaction', $this->request->getArgument('pageaction'));
+        }
+        
         $projects = $this->projectRepository->findByAgent($this->agent);
-        $this->view->assign('projects',$projects);
+        $this->view->assign('projects', $projects);
         $this->view->assign('agent', $this->agent);
     }
     
@@ -93,21 +102,23 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function createAction(\ARM\Armconstructions\Domain\Model\Landlord $newLandlord)
     {
-        $this->addFlashMessage('Landloard created successfully', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+        $this->addFlashMessage('Landlord created successfully', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->landlordRepository->add($newLandlord);
-        
+        $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
+         
         if ($this->request->hasArgument('returnpage')) {
             
             $pageid = $this->request->getArgument('returnpage');
             
             if ($this->request->hasArgument('project')) {
                 $project = $this->request->getArgument('project');
-            } 
+            }
+            
             if ($this->request->hasArgument('pageaction')) {
                 $pageaction = $this->request->getArgument('pageaction');
             }
             $link = $this->uriBuilder->setTargetPageUid($pageid)
-                       ->setArguments(array('tx_armconstructions_project' => array('action' => $pageaction, 'project' => $project)))
+                       ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
                        ->build();
             $this->redirectToUri($link);
             
@@ -125,8 +136,19 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function editAction(\ARM\Armconstructions\Domain\Model\Landlord $landlord)
     {
+        if ($this->request->hasArgument('project')) {
+            $this->view->assign('project', $this->request->getArgument('project'));
+        }
+        if ($this->request->hasArgument('pageid')) {
+            $this->view->assign('returnpage', $this->request->getArgument('pageid'));
+        }
+        if ($this->request->hasArgument('pageaction')) {
+            $this->view->assign('pageaction', $this->request->getArgument('pageaction'));
+        }
+        
         $projects = $this->projectRepository->findByAgent($this->agent);
-        $this->view->assign('projects',$projects);
+        
+        $this->view->assign('projects', $projects);
         $this->view->assign('agent', $this->agent);
         $this->view->assign('landlord', $landlord);
     }
@@ -141,18 +163,19 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     {
         $this->addFlashMessage('Landlord record updated successfully.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->landlordRepository->update($landlord);
+        
         if ($this->request->hasArgument('returnpage')) {
             
             $pageid = $this->request->getArgument('returnpage');
             
-            if ($this->request->hasArgument('project')) {
-                $project = $this->request->getArgument('project');
-            } 
+            
+            $project = $landlord->getProject();
+            
             if ($this->request->hasArgument('pageaction')) {
                 $pageaction = $this->request->getArgument('pageaction');
             }
             $link = $this->uriBuilder->setTargetPageUid($pageid)
-                       ->setArguments(array('tx_armconstructions_project' => array('action' => $pageaction, 'project' => $project)))
+                       ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
                        ->build();
             $this->redirectToUri($link);
             
@@ -165,11 +188,21 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * action predel
      *
      * @param \ARM\Armconstructions\Domain\Model\Landlord $landlord
-     * @ignorevalidation $supplier
+     * @ignorevalidation $landlord
      * @return void
      */
     public function predelAction(\ARM\Armconstructions\Domain\Model\Landlord $landlord)
     {
+        if ($this->request->hasArgument('project')) {
+            $this->view->assign('project', $this->request->getArgument('project'));
+        }
+        if ($this->request->hasArgument('pageid')) {
+            $this->view->assign('returnpage', $this->request->getArgument('pageid'));
+        }
+        if ($this->request->hasArgument('pageaction')) {
+            $this->view->assign('pageaction', $this->request->getArgument('pageaction'));
+        }
+        
         $this->view->assign('landlord', $landlord);
     }
     
@@ -181,9 +214,26 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function deleteAction(\ARM\Armconstructions\Domain\Model\Landlord $landlord)
     {
+        $project = $landlord->getProject();
+        
         $this->addFlashMessage('Landlord removed successfully.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->landlordRepository->remove($landlord);
-        $this->redirect('list');
+       
+        if ($this->request->hasArgument('returnpage')) {
+            
+            $pageid = $this->request->getArgument('returnpage');
+
+            if ($this->request->hasArgument('pageaction')) {
+                $pageaction = $this->request->getArgument('pageaction');
+            }
+            $link = $this->uriBuilder->setTargetPageUid($pageid)
+                       ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
+                       ->build();
+            $this->redirectToUri($link);
+            
+        } else {
+             $this->redirect('list');
+        }
     }
 
 }

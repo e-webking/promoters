@@ -1,19 +1,21 @@
 <f:if condition="{projects}">
     <f:then>
-        <f:form action="create" name="newLandlord" object="{newLandlord}">
+        <f:form pageUid="{settings.landlordList}" action="create" name="newLandlord" object="{newLandlord}">
             <div class="modal-header" style="background:lightgreen">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
             <h4 class="modal-title" style="color:black">New Landlord</h4>
             </div>
         <div class="modal-body">
             <div class="container-fluid">
-        <f:render partial="Landlord/FormFields" arguments="{agent:agent, projects:projects}" />
+                <f:render partial="Landlord/FormFields" arguments="{agent:agent, projects:projects, project:project}" />
             </div>
         </div>
         <div class="modal-footer" style="background:lightgray">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <f:form.submit value="Add" class="btn btn-primary" />
         </div>
+            <f:form.hidden name="returnpage" value="{returnpage}" />
+            <f:form.hidden name="pageaction" value="{pageaction}" />
         </f:form>
     </f:then>
     <f:else>

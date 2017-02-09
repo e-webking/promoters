@@ -1,26 +1,17 @@
-
-<f:layout name="Default" />
-
-This template displays a EDIT form for the current domain object.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        Edit.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
-<f:section name="main">
-<h1>Edit Client</h1>
-
-<f:flashMessages />
-
-<f:render partial="FormErrors" arguments="{object:Client}" />
-
-<f:form action="update" name="client" object="{client}" >
-<f:render partial="Client/FormFields" arguments="{client:client}" />
-	<f:form.submit value="Save" />
+<f:form pageUid="{settings.clientList}" action="update" name="client" object="{client}" >
+<div class="modal-header" style="background:lightgreen">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
+    <h4 class="modal-title" style="color:black">Edit Customer</h4>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <f:render partial="Client/FormFields" arguments="{client:client, projects:projects, agent:agent, project:project}" />
+    </div>
+</div>
+<div class="modal-footer" style="background:lightgray">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <f:form.submit value="Update" class="btn btn-primary" />
+    <f:form.hidden name="returnpage" value="{returnpage}" />
+    <f:form.hidden name="pageaction" value="{pageaction}" />
+</div>
 </f:form>
-</f:section>

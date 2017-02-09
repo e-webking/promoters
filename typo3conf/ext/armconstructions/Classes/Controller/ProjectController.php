@@ -60,6 +60,30 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @inject
      */
     protected $paymentRepository = NULL;
+    
+    /**
+     * landlordRepository
+     *
+     * @var \ARM\Armconstructions\Domain\Repository\LandlordRepository
+     * @inject
+     */
+    protected $landlordRepository = NULL;
+    
+    /**
+     * clientRepository
+     *
+     * @var \ARM\Armconstructions\Domain\Repository\ClientRepository
+     * @inject
+     */
+    protected $clientRepository = NULL;
+    
+    /**
+     * incomeRepository
+     *
+     * @var \ARM\Armconstructions\Domain\Repository\IncomeRepository
+     * @inject
+     */
+    protected $incomeRepository = NULL;
 
     /**
      *
@@ -94,8 +118,13 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function showAction(\ARM\Armconstructions\Domain\Model\Project $project)
     {
-
+        $landlords = $this->landlordRepository->findByAgent($this->agent);
+        $clients = $this->clientRepository->findByAgent($this->agent);
+         
+        $this->view->assign('landlords', $landlords);
+        $this->view->assign('clients', $clients);
         $this->view->assign('project', $project);
+        $this->view->assign('pageid', $this->settings['projectList']);
     }
     
     /**
@@ -293,8 +322,10 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function addpayAction(\ARM\Armconstructions\Domain\Model\Project $project)
     {
         $suppliers = $this->supplierRepository->findByAgent($this->agent);
+        $landlords = $this->landlordRepository->findByAgent($this->agent);
         
         $this->view->assign('suppliers', $suppliers);
+        $this->view->assign('landlords', $landlords);
         $this->view->assign('project', $project);
         $this->view->assign('agent', $this->agent);
     }
@@ -305,7 +336,7 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function initializeCreatepayAction()
     {
         if (isset($this->arguments['payment'])) {            
-            $this->arguments['expense']->getPropertyMappingConfiguration()->forProperty('pdate')->setTypeConverterOption(
+            $this->arguments['payment']->getPropertyMappingConfiguration()->forProperty('pdate')->setTypeConverterOption(
                 'TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter',
                 \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT,
                 'd-m-Y'
@@ -339,8 +370,10 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function editpayAction(\ARM\Armconstructions\Domain\Model\Payment $payment)
     {
         $suppliers = $this->supplierRepository->findByAgent($this->agent);
+        $landlords = $this->landlordRepository->findByAgent($this->agent);
         
         $this->view->assign('suppliers', $suppliers);
+        $this->view->assign('landlords', $landlords);
         $this->view->assign('project', $payment->getProject());
         $this->view->assign('agent', $this->agent);
         $this->view->assign('payment', $payment);
@@ -352,7 +385,7 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function initializeUpdatepayAction()
     {
         if (isset($this->arguments['payment'])) {            
-            $this->arguments['expense']->getPropertyMappingConfiguration()->forProperty('pdate')->setTypeConverterOption(
+            $this->arguments['payment']->getPropertyMappingConfiguration()->forProperty('pdate')->setTypeConverterOption(
                 'TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter',
                 \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT,
                 'd-m-Y'
@@ -394,4 +427,113 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->redirect('show',  NULL, NULL, array('project' => $project));
     }
 
+    
+    /**
+     * action addpay
+     * @param \ARM\Armconstructions\Domain\Model\Project $project
+     * @return void
+     */
+    public function addincomeAction(\ARM\Armconstructions\Domain\Model\Project $project)
+    {
+        $clients = $this->clientRepository->findByAgent($this->agent);
+        
+        $this->view->assign('clients', $clients);
+        $this->view->assign('project', $project);
+        $this->view->assign('agent', $this->agent);
+    }
+    
+    /**
+     * 
+     */
+    public function initializeCreateincomeAction()
+    {
+        if (isset($this->arguments['income'])) {            
+            $this->arguments['income']->getPropertyMappingConfiguration()->forProperty('pdate')->setTypeConverterOption(
+                'TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter',
+                \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT,
+                'd-m-Y'
+            );
+        }
+    }
+    
+    /**
+     * action createpay
+     *
+     * @param \ARM\Armconstructions\Domain\Model\Income $income
+     * @return void
+     */
+    public function createincomeAction(\ARM\Armconstructions\Domain\Model\Income $income)
+    {
+        $this->addFlashMessage('Income added successfully', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+        $this->incomeRepository->add($income);
+        $project = $income->getProject();
+        $project->addIncome($income);
+        $this->projectRepository->update($project);
+        
+        $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
+        $this->redirect('show', NULL, NULL, array('project' => $project->getUid()));
+    }
+    
+    /**
+     * action editpay
+     * @param \ARM\Armconstructions\Domain\Model\Income $income
+     * @return void
+     */
+    public function editincomeAction(\ARM\Armconstructions\Domain\Model\Income $income)
+    {
+        $clients = $this->clientRepository->findByAgent($this->agent);
+        
+        $this->view->assign('clients', $clients);
+        $this->view->assign('project', $income->getProject());
+        $this->view->assign('agent', $this->agent);
+        $this->view->assign('income', $income);
+    }
+    
+    /**
+     * 
+     */
+    public function initializeUpdateincomeAction()
+    {
+        if (isset($this->arguments['income'])) {            
+            $this->arguments['income']->getPropertyMappingConfiguration()->forProperty('pdate')->setTypeConverterOption(
+                'TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter',
+                \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT,
+                'd-m-Y'
+            );
+        }
+    }
+    
+    /**
+     * action updatepay
+     * @param \ARM\Armconstructions\Domain\Model\Income $income
+     * @return void
+     */
+    public function updateincomeAction(\ARM\Armconstructions\Domain\Model\Income $income)
+    {
+        $this->addFlashMessage('Income updated successfully', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+        $this->incomeRepository->update($income);
+        $this->redirect('show',  NULL, NULL, array('project' => $income->getProject()));
+    }
+    
+     /**
+     * 
+     * @param \ARM\Armconstructions\Domain\Model\Income $income
+     */
+    public function predelincomeAction(\ARM\Armconstructions\Domain\Model\Income $income) {
+        
+        $this->view->assign('income', $income);
+    }
+    
+    /**
+     * action delpay
+     * @param \ARM\Armconstructions\Domain\Model\Income $income
+     * @return void
+     */
+    public function delincomeAction(\ARM\Armconstructions\Domain\Model\Income $income)
+    {
+        $project = $income->getProject();
+        $this->addFlashMessage('Income removed successfully', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+        $this->incomeRepository->remove($income);
+        $this->redirect('show',  NULL, NULL, array('project' => $project));
+    }
 }

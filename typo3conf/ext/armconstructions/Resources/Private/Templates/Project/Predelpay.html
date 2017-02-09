@@ -1,18 +1,16 @@
-<f:form pageUid="{settings.landlordList}" method="post" action="delete" name="landlord" object="{landlord}">
+<f:form method="post" action="delpay" name="payment" object="{payment}">
 <div class="modal-header" style="background:red">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h4 class="modal-title" style="color:black">Confirm removal</h4>
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-    <p>Do you want to remove this landlord?</p>
-    <p class="text-warning"><small>{landlord.name}, {landlord.phone}</small></p>
+    <p>Do you want to remove this payment?</p>
+    <p class="text-warning"><small>Rs. {payment.amount}, Voucher: {payment.voucher}</small></p>
     </div>
 </div>
     <div class="modal-footer" style="background:lightgray">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-danger">Delete</button>
     </div>
-    <f:form.hidden name="returnpage" value="{returnpage}" />
-    <f:form.hidden name="pageaction" value="{pageaction}" />
  </f:form>

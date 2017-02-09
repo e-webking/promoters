@@ -109,7 +109,7 @@
 				<source>Payment</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_payment.pdate">
-				<source>Pdate</source>
+				<source>Date</source>
 			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_payment.amount">
 				<source>Amount</source>

@@ -31,7 +31,14 @@ namespace ARM\Armconstructions\Controller;
  */
 class ClientController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-
+    /**
+     * projectRepository
+     *
+     * @var \ARM\Armconstructions\Domain\Repository\ProjectRepository
+     * @inject
+     */
+    protected $projectRepository = NULL;
+    
     /**
      * clientRepository
      *
@@ -54,6 +61,7 @@ class ClientController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $this->agent = $GLOBALS['TSFE']->fe_user->user['uid']; 
     }
     
+    
     /**
      * action list
      *
@@ -61,7 +69,7 @@ class ClientController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function listAction()
     {
-        $clients = $this->clientRepository->findAll();
+        $clients = $this->clientRepository->findByAgent($this->agent);
         $this->view->assign('clients', $clients);
     }
     
@@ -72,20 +80,46 @@ class ClientController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function newAction()
     {
-         $this->view->assign('agent', $this->agent);
+        if ($this->request->hasArgument('project')) {
+            $this->view->assign('project', $this->request->getArgument('project'));
+        }
+        if ($this->request->hasArgument('pageid')) {
+            $this->view->assign('returnpage', $this->request->getArgument('pageid'));
+        }
+        if ($this->request->hasArgument('pageaction')) {
+            $this->view->assign('pageaction', $this->request->getArgument('pageaction'));
+        }
+        $projects = $this->projectRepository->findByAgent($this->agent);
+        $this->view->assign('projects', $projects);
+        $this->view->assign('agent', $this->agent);
     }
     
     /**
      * action create
      *
-     * @param \ARM\Armconstructions\Domain\Model\Client $newClient
+     * @param \ARM\Armconstructions\Domain\Model\Client $client
      * @return void
      */
-    public function createAction(\ARM\Armconstructions\Domain\Model\Client $newClient)
+    public function createAction(\ARM\Armconstructions\Domain\Model\Client $client)
     {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        $this->clientRepository->add($newClient);
-        $this->redirect('list');
+        $project = $client->getProject();
+        $this->addFlashMessage('Customer created successfully', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+        $this->clientRepository->add($client);
+        $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
+        
+        if ($this->request->hasArgument('returnpage')) {
+            
+            $pageid = $this->request->getArgument('returnpage');
+           
+            if ($this->request->hasArgument('pageaction')) {
+                $pageaction = $this->request->getArgument('pageaction');
+            }
+            $link = $this->uriBuilder->setTargetPageUid($pageid)
+                       ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
+                       ->build();
+            $this->redirectToUri($link);
+            
+        }
     }
     
     /**
@@ -97,6 +131,18 @@ class ClientController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function editAction(\ARM\Armconstructions\Domain\Model\Client $client)
     {
+        if ($this->request->hasArgument('project')) {
+            $this->view->assign('project', $this->request->getArgument('project'));
+        }
+        if ($this->request->hasArgument('pageid')) {
+            $this->view->assign('returnpage', $this->request->getArgument('pageid'));
+        }
+        if ($this->request->hasArgument('pageaction')) {
+            $this->view->assign('pageaction', $this->request->getArgument('pageaction'));
+        }
+        
+        $projects = $this->projectRepository->findByAgent($this->agent);
+        $this->view->assign('projects', $projects);
         $this->view->assign('client', $client);
     }
     
@@ -108,9 +154,46 @@ class ClientController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function updateAction(\ARM\Armconstructions\Domain\Model\Client $client)
     {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->addFlashMessage('Customer updated successfully', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->clientRepository->update($client);
-        $this->redirect('list');
+        $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
+       
+        if ($this->request->hasArgument('returnpage')) {
+            
+            $pageid = $this->request->getArgument('returnpage');
+            $project = $client->getProject();
+            
+            if ($this->request->hasArgument('pageaction')) {
+                $pageaction = $this->request->getArgument('pageaction');
+            }
+            
+            $link = $this->uriBuilder->setTargetPageUid($pageid)
+                       ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
+                       ->build();
+            $this->redirectToUri($link);
+        }
+    }
+    
+    /**
+     * action predel
+     *
+     * @param \ARM\Armconstructions\Domain\Model\Client $client
+     * @ignorevalidation $client
+     * @return void
+     */
+    public function predelAction(\ARM\Armconstructions\Domain\Model\Client $client)
+    {
+        if ($this->request->hasArgument('project')) {
+            $this->view->assign('project', $this->request->getArgument('project'));
+        }
+        if ($this->request->hasArgument('pageid')) {
+            $this->view->assign('returnpage', $this->request->getArgument('pageid'));
+        }
+        if ($this->request->hasArgument('pageaction')) {
+            $this->view->assign('pageaction', $this->request->getArgument('pageaction'));
+        }
+        
+        $this->view->assign('client', $client);
     }
     
     /**
@@ -121,9 +204,26 @@ class ClientController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function deleteAction(\ARM\Armconstructions\Domain\Model\Client $client)
     {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $project = $client->getProject();
+        
+        $this->addFlashMessage('Customer removed successfully.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->clientRepository->remove($client);
-        $this->redirect('list');
+        $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
+        
+        if ($this->request->hasArgument('returnpage')) {
+            
+            $pageid = $this->request->getArgument('returnpage');
+
+            if ($this->request->hasArgument('pageaction')) {
+                $pageaction = $this->request->getArgument('pageaction');
+            }
+            
+            $link = $this->uriBuilder->setTargetPageUid($pageid)
+                       ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
+                       ->build();
+            $this->redirectToUri($link);
+            
+        }
     }
 
 }

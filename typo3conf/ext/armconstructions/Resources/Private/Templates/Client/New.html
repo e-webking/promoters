@@ -1,26 +1,17 @@
-
-<f:layout name="Default" />
-
-This template displays a NEW form for the current domain object.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        New.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
-<f:section name="main">
-<h1>New Client</h1>
-
-<f:flashMessages />
-
-<f:render partial="FormErrors" arguments="{object:Client}" />
-
-<f:form action="create"  enctype="multipart/form-data"  name="newClient" object="{newClient}">
-<f:render partial="Client/FormFields" />
-	<f:form.submit value="Create new" />
-</f:form>
-</f:section>
+        <f:form pageUid="{settings.clientList}" action="create" name="client" object="{client}">
+            <div class="modal-header" style="background:lightgreen">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
+            <h4 class="modal-title" style="color:black">New Customer</h4>
+            </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <f:render partial="Client/FormFields" arguments="{agent:agent, projects:projects, project:project}" />
+            </div>
+        </div>
+        <div class="modal-footer" style="background:lightgray">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <f:form.submit value="Add" class="btn btn-primary" />
+        </div>
+            <f:form.hidden name="returnpage" value="{returnpage}" />
+            <f:form.hidden name="pageaction" value="{pageaction}" />
+        </f:form>

@@ -26,27 +26,9 @@ plugin.tx_armconstructions_supplier {
 	}
         settings {
             supplierList = {$plugin.tx_armconstructions.settings.supplierList}
-            suppplierAdd = {$plugin.tx_armconstructions.settings.suppplierAdd}
-            supplierEdit = {$plugin.tx_armconstructions.settings.supplierEdit}
             projectList = {$plugin.tx_armconstructions.settings.projectList}
-            projectShow = {$plugin.tx_armconstructions.settings.projectShow}
-            projectAdd = {$plugin.tx_armconstructions.settings.projectAdd}
-            projectEdit = {$plugin.tx_armconstructions.settings.projectEdit}
-            expenseList = {$plugin.tx_armconstructions.settings.expenseList}
-            expenseAdd = {$plugin.tx_armconstructions.settings.expenseAdd}
-            expenseEdit = {$plugin.tx_armconstructions.settings.expenseEdit}
             clientList = {$plugin.tx_armconstructions.settings.clientList}
-            clientAdd = {$plugin.tx_armconstructions.settings.clientAdd}
-            clientEdit = {$plugin.tx_armconstructions.settings.clientEdit}
             landlordList = {$plugin.tx_armconstructions.settings.landlordList}
-            landlordAdd = {$plugin.tx_armconstructions.settings.landlordAdd}
-            landlordEdit = {$plugin.tx_armconstructions.settings.landlordEdit}
-            paymentList = {$plugin.tx_armconstructions.settings.paymentList}
-            paymentAdd = {$plugin.tx_armconstructions.settings.paymentAdd}
-            paymentEdit = {$plugin.tx_armconstructions.settings.paymentEdit}
-            incomeList = {$plugin.tx_armconstructions.settings.incomeList}
-            incomeAdd = {$plugin.tx_armconstructions.settings.incomeAdd}
-            incomeEdit = {$plugin.tx_armconstructions.settings.incomeEdit}
 	}
 }
 

@@ -14,26 +14,8 @@ plugin.tx_armconstructions {
 	}
         settings {
             supplierList = 3
-            suppplierAdd = 13
-            supplierEdit = 16
             projectList = 4
-            projectShow = 11
-            projectAdd = 24
-            projectEdit = 25
-            expenseList = 6
-            expenseAdd = 10
-            expenseEdit = 12
-            clientList = 7
-            clientAdd = 8
-            clientEdit = 9
             landlordList = 5
-            landlordAdd = 14
-            landlordEdit = 15
-            paymentList = 17
-            paymentAdd = 18
-            paymentEdit = 19
-            incomeList = 26
-            incomeAdd = 27
-            incomeEdit = 28
+            clientList = 7
         }
 }

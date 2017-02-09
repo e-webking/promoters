@@ -8,6 +8,10 @@
 <f:form.select property="supplier" options="{suppliers}" optionLabelField="name" optionValueField="uid" prependOptionLabel="-- Select --" prependOptionValue="0" class="form-control" /><br />
 <label for="supplier">Landlord</label><br />
 <f:form.select property="landlord" options="{landlords}" optionLabelField="name" optionValueField="uid" prependOptionLabel="-- Select --" prependOptionValue="0" class="form-control" /><br />
+<label for="voucher">
+	<f:translate key="tx_armconstructions_domain_model_payment.voucher" />
+</label><br />
+	<f:form.textfield property="voucher" class="form-control" /><br />
 <label for="pdate">
 	<f:translate key="tx_armconstructions_domain_model_payment.pdate" />
 </label><br />

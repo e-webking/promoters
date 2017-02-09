@@ -35,12 +35,12 @@ if (!defined('TYPO3_MODE')) {
 	'ARM.' . $_EXTKEY,
 	'Client',
 	array(
-		'Client' => 'list, new, create, edit, update',
+		'Client' => 'list, new, create, edit, update, predel, delete',
 		
 	),
 	// non-cacheable actions
 	array(
-		'Client' => 'list, new, create, edit, update',
+		'Client' => 'list, new, create, edit, update, predel, delete',
 		
 	)
 );
@@ -49,10 +49,10 @@ if (!defined('TYPO3_MODE')) {
 	'ARM.' . $_EXTKEY,
 	'Project',
 	array(
-            'Project' => 'list, new, create, show, edit, update, predel, delete, addmat, createmat, editmat, updatemat, predelmat, delmat, addpay, createpay, editpay, addpay, createpay, editpay, updatepay, predelpay, delpay',
+            'Project' => 'list, new, create, show, edit, update, predel, delete, addmat, createmat, editmat, updatemat, predelmat, delmat, addpay, createpay, editpay, updatepay, predelpay, delpay, addincome, createincome, editincome, updateincome, predelincome, delincome',
 	),
 	// non-cacheable actions
 	array(
-            'Project' => 'list, new, create, show, edit, update, predel, delete, addmat, createmat, editmat, updatemat, predelmat, delmat, addpay, createpay, editpay, addpay, createpay, editpay, updatepay, predelpay, delpay',	
+            'Project' => 'list, new, create, show, edit, update, predel, delete, addmat, createmat, editmat, updatemat, predelmat, delmat, addpay, createpay, editpay, updatepay, predelpay, delpay, addincome, createincome, editincome, updateincome, predelincome, delincome',	
 	)
 );

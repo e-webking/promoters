@@ -3,7 +3,7 @@
         $(this).removeData('bs.modal');
     });
     
-//    $('#dtid').DataTable();
+    $('#dtid').DataTable();
 
     $('.ls-modal').on('click', function(e){
       e.preventDefault();
@@ -13,5 +13,11 @@
       }).modal('show');
       
       return false;
+    });
+    
+     $('.pdate').datebox({
+        mode: "calbox",
+        dateFormat: "%d-%m-%Y",
+        overrideDateFormat: "%d-%m-%Y",
     });
 })(jQuery);

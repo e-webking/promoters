@@ -1,21 +1,24 @@
 <f:form.hidden property="agent" value="{agent}"/>
-<label for="pdate">
-	<f:translate key="tx_armconstructions_domain_model_income.pdate" />
-</label><br />
-	<f:form.textfield property="pdate"  value="{income.pdate->f:format.date()}" /><br />
-<label for="amount">
-	<f:translate key="tx_armconstructions_domain_model_income.amount" />
-</label><br />
-	<f:form.textfield property="amount" /><br />
-<label for="mode">
-	<f:translate key="tx_armconstructions_domain_model_income.mode" />
-</label><br />
-	<f:form.textfield property="mode" /><br />
-<label for="instrumentno">
-	<f:translate key="tx_armconstructions_domain_model_income.instrumentno" />
-</label><br />
-	<f:form.textfield property="instrumentno" /><br />
+<f:form.hidden property="project" value="{project}"/>
+<label for="client">Customer</label><br />
+<f:form.select property="client" options="{clients}" optionLabelField="name" optionValueField="uid" class="form-control" /><br />
 <label for="particular">
 	<f:translate key="tx_armconstructions_domain_model_income.particular" />
 </label><br />
-	<f:form.textfield property="particular" /><br />
+	<f:form.textfield property="particular" class='form-control' /><br />
+<label for="pdate">
+	<f:translate key="tx_armconstructions_domain_model_income.pdate" />
+</label><br />
+	<f:form.textfield property="pdate" placeholder="DD-MM-YYYY" value="{income.pdate->f:format.date(format:'d-m-Y')}" class='form-control pdate' /><br />
+<label for="amount">
+	<f:translate key="tx_armconstructions_domain_model_income.amount" />
+</label><br />
+	<f:form.textfield property="amount" class='form-control' /><br />
+<label for="mode">
+	<f:translate key="tx_armconstructions_domain_model_income.mode" />
+</label><br />
+	<f:form.select property="mode" options="{0:'Cash', 1:'Cheque'}" class='form-control' /><br />
+<label for="instrumentno">
+	<f:translate key="tx_armconstructions_domain_model_income.instrumentno" />
+</label><br />
+	<f:form.textfield property="instrumentno" class='form-control' /><br />

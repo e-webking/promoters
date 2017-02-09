@@ -1,10 +1,5 @@
 (function($) {
-     $("div#menu").mmenu({
-       "offCanvas": {
-            position: "right"
-       }
-    });
-    $(".modal").on("hidden.bs.modal", function() {
+    $("#modal-response").on("hide.bs.modal", function() {
         $(this).removeData('bs.modal');
     });
     

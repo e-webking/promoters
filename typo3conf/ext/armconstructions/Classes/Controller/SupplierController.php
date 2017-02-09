@@ -120,7 +120,7 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @ignorevalidation $supplier
      * @return void
      */
-    public function predelAction(Armconstructions\Domain\Model\Supplier $supplier)
+    public function predelAction(\ARM\Armconstructions\Domain\Model\Supplier $supplier)
     {
         $this->view->assign('supplier', $supplier);
     }

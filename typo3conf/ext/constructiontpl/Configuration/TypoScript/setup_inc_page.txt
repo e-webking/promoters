@@ -75,14 +75,12 @@ page.includeCSS {
     file3 = {$templatePath}Resources/Public/css/navbar-static-top.css
     file4 = {$templatePath}Resources/Public/css/font-awesome.min.css
     file5 = {$templatePath}Resources/Public/css/jquery.dataTables.min.css
-#    file6 = {$templatePath}Resources/Public/css/mmenu.all.css
-#    file7 = {$templatePath}Resources/Public/css/mmenu.positioning.css
     file8 = {$templatePath}Resources/Public/css/jtsage-datebox-4.0.0.bootstrap.min.css
     file9 = {$templatePath}Resources/Public/css/main.css
     
 
 }
-page.includeJSFooterlibs {
+page.includeJSlibs {
     jquery = {$templatePath}Resources/Public/js/jquery-2.1.4.min.js
     jquery.forceOnTop = 1
 #   jquery.compress = 1
@@ -93,7 +91,6 @@ page.includeJSFooter{
     file3  = {$templatePath}Resources/Public/js/jtsage-datebox-4.0.0.bootstrap.min.js
     file4  = {$templatePath}Resources/Public/js/jtsage-datebox.lang.utf8.js
     file5  = {$templatePath}Resources/Public/js/jquery.dataTables.min.js
-#    file6  = {$templatePath}Resources/Public/js/jquery.mmenu.all.min.js
     file8  = {$templatePath}Resources/Public/js/function.js
 
 }

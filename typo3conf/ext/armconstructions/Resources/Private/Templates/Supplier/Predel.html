@@ -1,22 +1,16 @@
-<div class="modal-dialog">
-    <div class="modal-content">
-        <f:form method="post" action="delete" name="supplier" object="{supplier}">
-        <div class="modal-header" style="background:red">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" style="color:black">Confirm removal</h4>
-        </div>
-        <div class="modal-body">
-            <div class="container-fluid">
-            <p>Do you want to remove this supplier?</p>
-            <p class="text-warning"><small>{supplier.name}, {supplier.tag}</small></p>
-            </div>
-        </div>
-        <f:if condition="{fullaccess}">
-            <div class="modal-footer" style="background:lightgray">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </div>
-        </f:if>
-         </f:form>
+<f:form method="post" action="delete" name="supplier" object="{supplier}">
+<div class="modal-header" style="background:red">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" style="color:black">Confirm removal</h4>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+    <p>Do you want to remove this supplier?</p>
+    <p class="text-warning"><small>{supplier.name}, {supplier.tag}</small></p>
     </div>
 </div>
+    <div class="modal-footer" style="background:lightgray">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
+ </f:form>

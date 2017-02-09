@@ -1,0 +1,121 @@
+
+config.tx_extbase{
+    persistence{
+        classes{
+            ARM\Armconstructions\Domain\Model\Agent {
+                mapping {
+                    tableName = fe_users
+                    recordType = Tx_Extbase_Domain_Model_FrontendUser
+                    columns {
+                        disable.mapOnProperty = disable
+                    }
+                }
+            }
+    	}
+    }
+}
+
+plugin.tx_armconstructions_supplier {
+	view {
+		templateRootPaths.0 = {$plugin.tx_armconstructions.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_armconstructions.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_armconstructions.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_armconstructions.persistence.storagePid}
+	}
+        settings {
+            supplierList = {$plugin.tx_armconstructions.settings.supplierList}
+            suppplierAdd = {$plugin.tx_armconstructions.settings.suppplierAdd}
+            supplierEdit = {$plugin.tx_armconstructions.settings.supplierEdit}
+            projectList = {$plugin.tx_armconstructions.settings.projectList}
+            projectShow = {$plugin.tx_armconstructions.settings.projectShow}
+            projectAdd = {$plugin.tx_armconstructions.settings.projectAdd}
+            projectEdit = {$plugin.tx_armconstructions.settings.projectEdit}
+            expenseList = {$plugin.tx_armconstructions.settings.expenseList}
+            expenseAdd = {$plugin.tx_armconstructions.settings.expenseAdd}
+            expenseEdit = {$plugin.tx_armconstructions.settings.expenseEdit}
+            clientList = {$plugin.tx_armconstructions.settings.clientList}
+            clientAdd = {$plugin.tx_armconstructions.settings.clientAdd}
+            clientEdit = {$plugin.tx_armconstructions.settings.clientEdit}
+            landlordList = {$plugin.tx_armconstructions.settings.landlordList}
+            landlordAdd = {$plugin.tx_armconstructions.settings.landlordAdd}
+            landlordEdit = {$plugin.tx_armconstructions.settings.landlordEdit}
+            paymentList = {$plugin.tx_armconstructions.settings.paymentList}
+            paymentAdd = {$plugin.tx_armconstructions.settings.paymentAdd}
+            paymentEdit = {$plugin.tx_armconstructions.settings.paymentEdit}
+            incomeList = {$plugin.tx_armconstructions.settings.incomeList}
+            incomeAdd = {$plugin.tx_armconstructions.settings.incomeAdd}
+            incomeEdit = {$plugin.tx_armconstructions.settings.incomeEdit}
+	}
+}
+
+plugin.tx_armconstructions_landlord {
+	view {
+		templateRootPaths.0 = {$plugin.tx_armconstructions.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_armconstructions.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_armconstructions.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_armconstructions.persistence.storagePid}
+	}
+        settings < plugin.tx_armconstructions_supplier.settings
+}
+
+plugin.tx_armconstructions_client {
+	view {
+		templateRootPaths.0 = {$plugin.tx_armconstructions.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_armconstructions.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_armconstructions.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_armconstructions.persistence.storagePid}
+	}
+        settings < plugin.tx_armconstructions_supplier.settings
+}
+
+plugin.tx_armconstructions_project {
+	view {
+		templateRootPaths.0 = {$plugin.tx_armconstructions.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_armconstructions.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_armconstructions.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_armconstructions.persistence.storagePid}
+	}
+        settings < plugin.tx_armconstructions_supplier.settings
+}
+
+plugin.tx_armconstructions._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-armconstructions table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-armconstructions table th {
+		font-weight:bold;
+	}
+
+	.tx-armconstructions table td {
+		vertical-align:top;
+	}
+
+	.typo3-messages .message-error {
+		color:red;
+	}
+
+	.typo3-messages .message-ok {
+		color:green;
+	}
+
+)

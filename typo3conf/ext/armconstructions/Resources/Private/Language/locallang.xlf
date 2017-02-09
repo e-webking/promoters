@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-02-09T08:19:33Z" product-name="armconstructions">
+		<header/>
+		<body>
+			<trans-unit id="tx_armconstructions_domain_model_supplier">
+				<source>Supplier</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_supplier.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_supplier.tag">
+				<source>Tag</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_supplier.materials">
+				<source>Materials</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_supplier.payments">
+				<source>Payments</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_landlord">
+				<source>Landlord</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_landlord.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_landlord.phone">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_landlord.address">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_landlord.project">
+				<source>Project</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_project">
+				<source>Project</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_project.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_project.address">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_project.photos">
+				<source>Photos</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_project.landlords">
+				<source>Landlords</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_project.clients">
+				<source>Clients</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_project.materials">
+				<source>Materials</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_project.payments">
+				<source>Payments</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_project.incomes">
+				<source>Incomes</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_client">
+				<source>Client</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_client.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_client.phone">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_client.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_client.project">
+				<source>Project</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_client.incomes">
+				<source>Incomes</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_material">
+				<source>Material</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_material.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_material.rate">
+				<source>Rate</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_material.qty">
+				<source>Qty</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_material.amount">
+				<source>Amount</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_material.transport">
+				<source>Transport</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_material.misc">
+				<source>Misc</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_material.sdate">
+				<source>Sdate</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_material.supplier">
+				<source>Supplier</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_material.project">
+				<source>Project</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_payment">
+				<source>Payment</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_payment.pdate">
+				<source>Pdate</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_payment.amount">
+				<source>Amount</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_payment.mode">
+				<source>Mode</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_payment.instrumentno">
+				<source>Instrumentno</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_payment.payto">
+				<source>Payto</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_payment.supplier">
+				<source>Supplier</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_payment.project">
+				<source>Project</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_payment.landlord">
+				<source>Landlord</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_income">
+				<source>Income</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_income.pdate">
+				<source>Pdate</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_income.amount">
+				<source>Amount</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_income.mode">
+				<source>Mode</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_income.instrumentno">
+				<source>Instrumentno</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_income.particular">
+				<source>Particular</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_income.client">
+				<source>Client</source>
+			</trans-unit>
+			<trans-unit id="tx_armconstructions_domain_model_income.project">
+				<source>Project</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

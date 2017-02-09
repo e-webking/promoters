@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-02-09T08:19:33Z" product-name="armconstructions">
+		<header/>
+		<body>
+			<trans-unit id="pdate.description">
+				<source>pdate</source>
+			</trans-unit>
+			<trans-unit id="amount.description">
+				<source>amount</source>
+			</trans-unit>
+			<trans-unit id="mode.description">
+				<source>mode</source>
+			</trans-unit>
+			<trans-unit id="instrumentno.description">
+				<source>instrumentno</source>
+			</trans-unit>
+			<trans-unit id="payto.description">
+				<source>payto</source>
+			</trans-unit>
+			<trans-unit id="supplier.description">
+				<source>supplier</source>
+			</trans-unit>
+			<trans-unit id="project.description">
+				<source>project</source>
+			</trans-unit>
+			<trans-unit id="landlord.description">
+				<source>landlord</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,45 @@
+
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<h1>Listing for Income</h1>
+
+<f:flashMessages />
+
+<table  class="tx_armconstructions" >
+	<tr>
+		<th><f:translate key="tx_armconstructions_domain_model_income.pdate" /></th>
+		<th><f:translate key="tx_armconstructions_domain_model_income.amount" /></th>
+		<th><f:translate key="tx_armconstructions_domain_model_income.mode" /></th>
+		<th><f:translate key="tx_armconstructions_domain_model_income.instrumentno" /></th>
+		<th><f:translate key="tx_armconstructions_domain_model_income.particular" /></th>
+		<th> </th>
+		<th> </th>
+	</tr>
+
+	<f:for each="{incomes}" as="income">
+		<tr>
+			<td><f:link.action action="show" arguments="{income : income}"> {income.pdate -> f:format.date()}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{income : income}"> {income.amount}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{income : income}"> {income.mode}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{income : income}"> {income.instrumentno}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{income : income}"> {income.particular}</f:link.action></td>
+			<td><f:link.action action="edit" arguments="{income : income}">Edit</f:link.action></td>
+			<td><f:link.action action="delete" arguments="{income : income}">Delete</f:link.action></td>
+		</tr>
+	</f:for>
+</table>
+
+<f:link.action action="new">New Income</f:link.action>
+</f:section>

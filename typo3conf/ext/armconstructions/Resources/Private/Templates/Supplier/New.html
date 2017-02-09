@@ -1,0 +1,18 @@
+<f:form action="create"  enctype="multipart/form-data"  name="newSupplier" object="{newSupplier}">
+<div class="modal-header" style="background:lightgreen">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
+    <h4 class="modal-title" style="color:black">New Supplier</h4>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <f:render partial="Supplier/FormFields" />
+    </div>
+</div>
+<div class="modal-footer" style="background:lightgray">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <f:form.submit value="Add" class="btn btn-primary" />
+</div>
+ <f:if condition="{redirect}">
+    <f:form.hidden name="redirect" value="{redirect}" />
+</f:if>
+</f:form>

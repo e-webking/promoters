@@ -1,0 +1,39 @@
+
+plugin.tx_armconstructions {
+	view {
+		# cat=plugin.tx_armconstructions_supplier/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:armconstructions/Resources/Private/Templates/
+		# cat=plugin.tx_armconstructions_supplier/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:armconstructions/Resources/Private/Partials/
+		# cat=plugin.tx_armconstructions_supplier/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:armconstructions/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_armconstructions_supplier//a; type=string; label=Default storage PID
+		storagePid = 21
+	}
+        settings {
+            supplierList = 3
+            suppplierAdd = 13
+            supplierEdit = 16
+            projectList = 4
+            projectShow = 11
+            projectAdd = 24
+            projectEdit = 25
+            expenseList = 6
+            expenseAdd = 10
+            expenseEdit = 12
+            clientList = 7
+            clientAdd = 8
+            clientEdit = 9
+            landlordList = 5
+            landlordAdd = 14
+            landlordEdit = 15
+            paymentList = 17
+            paymentAdd = 18
+            paymentEdit = 19
+            incomeList = 26
+            incomeAdd = 27
+            incomeEdit = 28
+        }
+}

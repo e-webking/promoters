@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-02-09T08:19:33Z" product-name="armconstructions">
+		<header/>
+		<body>
+			<trans-unit id="name.description">
+				<source>name</source>
+			</trans-unit>
+			<trans-unit id="tag.description">
+				<source>tag</source>
+			</trans-unit>
+			<trans-unit id="materials.description">
+				<source>materials</source>
+			</trans-unit>
+			<trans-unit id="payments.description">
+				<source>payments</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

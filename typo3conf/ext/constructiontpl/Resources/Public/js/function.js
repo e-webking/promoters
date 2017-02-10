@@ -20,4 +20,6 @@
         dateFormat: "%d-%m-%Y",
         overrideDateFormat: "%d-%m-%Y",
     });
+    
+    $('[data-toggle="tooltip"]').tooltip(); 
 })(jQuery);

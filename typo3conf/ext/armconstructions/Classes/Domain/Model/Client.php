@@ -54,6 +54,27 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $email = '';
     
     /**
+     * rate
+     *
+     * @var int
+     */
+    protected $rate = 0;
+    
+    /**
+     * addcost
+     *
+     * @var int
+     */
+    protected $addcost = 0;
+    
+    /**
+     * note
+     *
+     * @var string
+     */
+    protected $note = '';
+   
+    /**
      * project
      *
      * @var \ARM\Armconstructions\Domain\Model\Project
@@ -245,4 +266,66 @@ class Client extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->incomes = $incomes;
     }
 
+    /**
+     * Returns the note
+     *
+     * @return string $note
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+    
+    /**
+     * Sets the note
+     *
+     * @param string $note
+     * @return void
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
+    
+    /**
+     * Returns the rate
+     *
+     * @return int $rate
+     */
+    public function getRate()
+    {
+        return $this->rate;
+    }
+    
+    /**
+     * Sets the rate
+     *
+     * @param int $rate
+     * @return void
+     */
+    public function setRate($rate)
+    {
+        $this->rate = $rate;
+    }
+    
+    /**
+     * Returns the addcost
+     *
+     * @return int $addcost
+     */
+    public function getAddcost()
+    {
+        return $this->addcost;
+    }
+    
+    /**
+     * Sets the addcost
+     *
+     * @param int $addcost
+     * @return void
+     */
+    public function setAddcost($addcost)
+    {
+        $this->addcost = $addcost;
+    }
 }

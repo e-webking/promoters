@@ -19,14 +19,14 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'name,phone,email,project,incomes,',
+		'searchFields' => 'name,phone,email,rate,addcost,note,project,incomes,',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('armconstructions') . 'Resources/Public/Icons/tx_armconstructions_domain_model_client.gif'
 	),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, agent, name, phone, email, project, incomes',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, agent, name, phone, email, rate, addcost, note, project, incomes',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, agent, name, phone, email, project, incomes, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, agent, name, phone, email, rate, addcost, note, project, incomes, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -151,6 +151,33 @@ return array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'trim'
+			),
+		),
+                'rate' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:armconstructions/Resources/Private/Language/locallang_db.xlf:tx_armconstructions_domain_model_client.rate',
+			'config' => array(
+				'type' => 'input',
+				'size' => 15,
+				'eval' => 'int'
+			),
+		),
+                'addcost' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:armconstructions/Resources/Private/Language/locallang_db.xlf:tx_armconstructions_domain_model_client.addcost',
+			'config' => array(
+				'type' => 'input',
+				'size' => 15,
+				'eval' => 'int'
+			),
+		),
+                'note' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:armconstructions/Resources/Private/Language/locallang_db.xlf:tx_armconstructions_domain_model_client.note',
+			'config' => array(
+				'type' => 'text',
+				'rows' => 5,
+                                'cols' => 40
 			),
 		),
 		'project' => array(

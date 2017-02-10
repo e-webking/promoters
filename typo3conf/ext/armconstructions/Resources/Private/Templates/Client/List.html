@@ -20,6 +20,8 @@
                              <th><f:translate key="tx_armconstructions_domain_model_client.name" /></th>
                              <th><f:translate key="tx_armconstructions_domain_model_client.phone" /></th>
                              <th><f:translate key="tx_armconstructions_domain_model_client.email" /></th>
+                             <th><f:translate key="tx_armconstructions_domain_model_client.rate" /></th>
+                             <th><f:translate key="tx_armconstructions_domain_model_client.addcost" /></th>
                              <th>Project</th>
                              <th>Edit</th>
                              <th>Delete</th>
@@ -31,6 +33,8 @@
                              <td>{client.name}</td>
                              <td>{client.phone}</td>
                              <td>{client.email}</td>
+                             <td>{client.rate}</td>
+                             <td><a href="javascript:void(0);" data-toggle="tooltip" title="{client.note}" data-placement="right">{client.addcost}</a></td>
                              <td>{client.project.name}</td>
                              <td class="text-center"><a href="{t:uri.ajaxAction(action: 'edit', controller: 'Client', pluginName: 'Client', arguments:'{client : client}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-pencil"></i></a></td>
                              <td class="text-center"><a href="{t:uri.ajaxAction(action: 'predel', controller: 'Client', pluginName: 'Client', arguments:'{client : client}')}" class="btn btn-sm btn-circle btn-danger ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-trash-o"></i></a></td>

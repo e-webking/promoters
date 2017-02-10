@@ -72,6 +72,15 @@
 			<trans-unit id="tx_armconstructions_domain_model_client.email">
 				<source>Email</source>
 			</trans-unit>
+                        <trans-unit id="tx_armconstructions_domain_model_client.rate">
+				<source>Rate</source>
+			</trans-unit>
+                        <trans-unit id="tx_armconstructions_domain_model_client.addcost">
+				<source>Additional Cost</source>
+			</trans-unit>
+                        <trans-unit id="tx_armconstructions_domain_model_client.note">
+				<source>Notes</source>
+			</trans-unit>
 			<trans-unit id="tx_armconstructions_domain_model_client.project">
 				<source>Project</source>
 			</trans-unit>

@@ -117,10 +117,14 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             if ($this->request->hasArgument('pageaction')) {
                 $pageaction = $this->request->getArgument('pageaction');
             }
-            $link = $this->uriBuilder->setTargetPageUid($pageid)
-                       ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
-                       ->build();
-            $this->redirectToUri($link);
+            if ($pageid != '') {
+                $link = $this->uriBuilder->setTargetPageUid($pageid)
+                           ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
+                           ->build();
+                $this->redirectToUri($link);
+            } else {
+                $this->redirect('list');
+            }
             
         } else {
              $this->redirect('list');
@@ -174,10 +178,14 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             if ($this->request->hasArgument('pageaction')) {
                 $pageaction = $this->request->getArgument('pageaction');
             }
-            $link = $this->uriBuilder->setTargetPageUid($pageid)
+            if ($pageid != '') {
+                $link = $this->uriBuilder->setTargetPageUid($pageid)
                        ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
                        ->build();
-            $this->redirectToUri($link);
+                $this->redirectToUri($link);
+            } else {
+                $this->redirect('list');
+            }
             
         } else {
              $this->redirect('list');

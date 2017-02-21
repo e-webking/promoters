@@ -10,14 +10,18 @@
             <f:flashMessages />
             <br>
             <div class="row">
+                <div class="col-sm-4">Expenses: Rs. <arm:expense project="{project.uid}" />/-</div>
+                <div class="col-sm-4">Outward Payments: Rs. <arm:payment project="{project.uid}" />/-</div>
+                <div class="col-sm-4">Inward (Party) Payments: Rs. <arm:income project="{project.uid}" />/-</div>
+            </div>
+            <div class="row">
                 <div class="col-sm-4">
                     <div class="card-body">
                         <div class="content">
-                             <div class="value">
-                    Expenses: Rs. <arm:expense project="{project.uid}" />/-<br />
-                    Outward Payments: Rs. <arm:payment project="{project.uid}" />/-<br>
-                    Inward Payments: Rs. <arm:income project="{project.uid}" />/-
-                             </div>
+                             <div class="title">Suppliers <a href="{t:uri.ajaxAction(action: 'new', controller: 'Supplier', pluginName: 'Supplier', arguments:'{project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-success ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-plus"></i></a></div>
+                            <f:for each="{suppliers}" as="supplier">
+                                <div class="value">{supplier.name} <a href="{t:uri.ajaxAction(action: 'edit', controller: 'Supplier', pluginName: 'Supplier', arguments:'{supplier:supplier, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-pencil"></i></a> <a href="{t:uri.ajaxAction(action: 'predel', controller: 'Supplier', pluginName: 'Supplier', arguments:'{supplier:supplier, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-danger ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-trash-o"></i></a></div>
+                            </f:for>
                         </div>
                     </div>
                 </div>
@@ -34,7 +38,7 @@
                 <div class="col-sm-4">
                     <div class="card-body">
                         <div class="content">
-                            <div class="title">Customers <a href="{t:uri.ajaxAction(action: 'new', controller: 'Client', pluginName: 'Client', arguments:'{project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-success ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-plus"></i></a></div>
+                            <div class="title">Customers/Party <a href="{t:uri.ajaxAction(action: 'new', controller: 'Client', pluginName: 'Client', arguments:'{project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-success ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-plus"></i></a></div>
                             <f:for each="{clients}" as="client">
                                 <div class="value">{client.name}, {client.phone} <a href="{t:uri.ajaxAction(action: 'edit', controller: 'Client', pluginName: 'Client', arguments:'{client:client, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-pencil"></i></a> <a href="{t:uri.ajaxAction(action: 'predel', controller: 'Client', pluginName: 'Client', arguments:'{client:client, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-danger ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-trash-o"></i></a></div>
                             </f:for>

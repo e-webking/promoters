@@ -32,6 +32,14 @@ namespace ARM\Armconstructions\Controller;
 class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
+     /**
+     * projectRepository
+     *
+     * @var \ARM\Armconstructions\Domain\Repository\ProjectRepository
+     * @inject
+     */
+    protected $projectRepository = NULL;
+    
     /**
      * supplierRepository
      *
@@ -72,7 +80,9 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function newAction()
     {
-         $this->view->assign('agent', $this->agent);
+        $projects = $this->projectRepository->findByAgent($this->agent);
+        $this->view->assign('projects', $projects);
+        $this->view->assign('agent', $this->agent);
     }
     
     /**
@@ -85,7 +95,28 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     {
         $this->addFlashMessage('Supplier created', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->supplierRepository->add($newSupplier);
-        $this->redirect('list');
+        
+        $project = $newSupplier->getProject();
+		
+        if ($this->request->hasArgument('returnpage')) {
+			
+            $pageid = $this->request->getArgument('returnpage');
+            
+            if ($this->request->hasArgument('pageaction')) {
+                $pageaction = $this->request->getArgument('pageaction');
+            }
+            if ($pageid != '') {
+                $link = $this->uriBuilder->setTargetPageUid($pageid)
+                           ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
+                           ->build();
+                $this->redirectToUri($link);
+            } else {
+                $this->redirect('list');
+            }
+            
+        } else {
+             $this->redirect('list');
+        }
     }
     
     /**
@@ -97,6 +128,19 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function editAction(\ARM\Armconstructions\Domain\Model\Supplier $supplier)
     {
+         if ($this->request->hasArgument('project')) {
+            $this->view->assign('project', $this->request->getArgument('project'));
+        }
+        if ($this->request->hasArgument('pageid')) {
+            $this->view->assign('returnpage', $this->request->getArgument('pageid'));
+        }
+        if ($this->request->hasArgument('pageaction')) {
+            $this->view->assign('pageaction', $this->request->getArgument('pageaction'));
+        }
+        
+        $projects = $this->projectRepository->findByAgent($this->agent);
+        
+        $this->view->assign('projects', $projects);
         $this->view->assign('agent', $this->agent);
         $this->view->assign('supplier', $supplier);
     }
@@ -111,7 +155,29 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     {
         $this->addFlashMessage('Supplier updated successfully', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->supplierRepository->update($supplier);
-        $this->redirect('list');
+        
+        if ($this->request->hasArgument('returnpage')) {
+            
+            $pageid = $this->request->getArgument('returnpage');
+            
+            $project = $supplier->getProject();
+            
+            if ($this->request->hasArgument('pageaction')) {
+                $pageaction = $this->request->getArgument('pageaction');
+            }
+            
+            if ($pageid != '') {
+                $link = $this->uriBuilder->setTargetPageUid($pageid)
+                       ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
+                       ->build();
+                $this->redirectToUri($link);
+            } else {
+                $this->redirect('list');
+            }
+            
+        } else {
+             $this->redirect('list');
+        }
     }
     
     /**
@@ -123,6 +189,16 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function predelAction(\ARM\Armconstructions\Domain\Model\Supplier $supplier)
     {
+        if ($this->request->hasArgument('project')) {
+            $this->view->assign('project', $this->request->getArgument('project'));
+        }
+        if ($this->request->hasArgument('pageid')) {
+            $this->view->assign('returnpage', $this->request->getArgument('pageid'));
+        }
+        if ($this->request->hasArgument('pageaction')) {
+            $this->view->assign('pageaction', $this->request->getArgument('pageaction'));
+        }
+        
         $this->view->assign('supplier', $supplier);
     }
     
@@ -134,9 +210,25 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function deleteAction(\ARM\Armconstructions\Domain\Model\Supplier $supplier)
     {
+        $project = $supplier->getProject();
+        
         $this->addFlashMessage('Supplier removed', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->supplierRepository->remove($supplier);
-        $this->redirect('list');
+        if ($this->request->hasArgument('returnpage')) {
+            
+            $pageid = $this->request->getArgument('returnpage');
+
+            if ($this->request->hasArgument('pageaction')) {
+                $pageaction = $this->request->getArgument('pageaction');
+            }
+            $link = $this->uriBuilder->setTargetPageUid($pageid)
+                       ->setArguments(array('tx_armconstructions_project' => array('controller' => 'Project', 'action' => $pageaction, 'project' => $project)))
+                       ->build();
+            $this->redirectToUri($link);
+            
+        } else {
+             $this->redirect('list');
+        }
     }
 
 }

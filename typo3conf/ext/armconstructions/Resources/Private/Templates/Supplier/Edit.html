@@ -1,11 +1,11 @@
-<f:form action="update" name="supplier" object="{supplier}">
+<f:form pageUid="{settings.supplierList}" action="update" name="supplier" object="{supplier}">
 <div class="modal-header" style="background:lightgreen">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
     <h4 class="modal-title" style="color:black">Edit Supplier</h4>
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-        <f:render partial="Supplier/FormFields" arguments="{supplier:supplier, agent:agent}" />
+        <f:render partial="Supplier/FormFields" arguments="{supplier:supplier, agent:agent, projects:projects, project:project}" />
     </div>
 </div>
 <div class="modal-footer" style="background:lightgray">
@@ -15,4 +15,6 @@
  <f:if condition="{redirect}">
     <f:form.hidden name="redirect" value="{redirect}" />
 </f:if>
+    <f:form.hidden name="returnpage" value="{returnpage}" />
+    <f:form.hidden name="pageaction" value="{pageaction}" />
 </f:form>

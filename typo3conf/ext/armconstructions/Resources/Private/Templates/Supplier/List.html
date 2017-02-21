@@ -17,6 +17,7 @@
              <thead>
                      <tr>
                          <th><f:translate key="tx_armconstructions_domain_model_supplier.name" /></th>
+                         <th>Project</th>
                          <th>Phone</th>
                          <th><f:translate key="tx_armconstructions_domain_model_supplier.tag" /></th>
                          <th>Edit</th>
@@ -28,6 +29,7 @@
                      <f:for each="{suppliers}" as="supplier">
                          <tr>
                              <td>{supplier.name}</td>
+                             <td>{supplier.project.name}</td>
                              <td>{supplier.phone}</td>
                              <td>{supplier.tag}</td>
                              <td class="text-center"><a href="{t:uri.ajaxAction(action: 'edit', controller: 'Supplier', pluginName: 'Supplier', arguments:'{supplier : supplier}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-pencil"></i></a></td>

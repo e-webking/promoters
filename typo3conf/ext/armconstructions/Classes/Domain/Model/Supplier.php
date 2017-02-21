@@ -54,6 +54,13 @@ class Supplier extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $tag = '';
     
     /**
+     * project
+     *
+     * @var \ARM\Armconstructions\Domain\Model\Project
+     */
+    protected $project = null;
+    
+    /**
      * materials
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ARM\Armconstructions\Domain\Model\Material>
@@ -119,6 +126,27 @@ class Supplier extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setAgent($agent)
     {
         $this->agent = $agent;
+    }
+    
+    /**
+     * Returns the project
+     *
+     * @return \ARM\Armconstructions\Domain\Model\Project $project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+    
+    /**
+     * Sets the project
+     *
+     * @param \ARM\Armconstructions\Domain\Model\Project $project
+     * @return void
+     */
+    public function setProject(\ARM\Armconstructions\Domain\Model\Project $project)
+    {
+        $this->project = $project;
     }
     
     /**

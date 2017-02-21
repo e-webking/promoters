@@ -12,6 +12,7 @@ CREATE TABLE tx_armconstructions_domain_model_supplier (
 	materials int(11) unsigned DEFAULT '0' NOT NULL,
 	payments int(11) unsigned DEFAULT '0' NOT NULL,
         agent int(11) unsigned DEFAULT '0' NOT NULL,
+        project int(11) unsigned DEFAULT '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -96,6 +97,7 @@ CREATE TABLE tx_armconstructions_domain_model_project (
 	name varchar(255) DEFAULT '' NOT NULL,
 	address varchar(255) DEFAULT '' NOT NULL,
 	photos int(11) unsigned NOT NULL default '0',
+        suppliers int(11) unsigned DEFAULT '0' NOT NULL,
 	landlords int(11) unsigned DEFAULT '0' NOT NULL,
 	clients int(11) unsigned DEFAULT '0' NOT NULL,
 	materials int(11) unsigned DEFAULT '0' NOT NULL,

@@ -120,7 +120,9 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $landlords = $this->landlordRepository->findByProject($project);
         $clients = $this->clientRepository->findByProject($project);
-         
+        $suppliers = $this->supplierRepository->findByProject($project);
+        
+        $this->view->assign('suppliers', $suppliers);
         $this->view->assign('landlords', $landlords);
         $this->view->assign('clients', $clients);
         $this->view->assign('project', $project);
@@ -209,7 +211,7 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function addmatAction(\ARM\Armconstructions\Domain\Model\Project $project)
     {
         
-        $suppliers = $this->supplierRepository->findByAgent($this->agent);
+        $suppliers = $this->supplierRepository->findByProject($project);
         
         $this->view->assign('suppliers', $suppliers);
         $this->view->assign('project', $project);
@@ -257,7 +259,8 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function editmatAction(\ARM\Armconstructions\Domain\Model\Material $expense)
     {
-        $suppliers = $this->supplierRepository->findByAgent($this->agent);
+        $project = $expense->getProject();
+        $suppliers = $this->supplierRepository->findByProject($project);
         
         $this->view->assign('suppliers', $suppliers);
         $this->view->assign('project', $expense->getProject());
@@ -321,7 +324,7 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function addpayAction(\ARM\Armconstructions\Domain\Model\Project $project)
     {
-        $suppliers = $this->supplierRepository->findByAgent($this->agent);
+        $suppliers = $this->supplierRepository->findByProject($project);
         $landlords = $this->landlordRepository->findByAgent($this->agent);
         
         $this->view->assign('suppliers', $suppliers);
@@ -369,7 +372,8 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function editpayAction(\ARM\Armconstructions\Domain\Model\Payment $payment)
     {
-        $suppliers = $this->supplierRepository->findByAgent($this->agent);
+        $project = $payment->getProject();
+        $suppliers = $this->supplierRepository->findByProject($project);
         $landlords = $this->landlordRepository->findByAgent($this->agent);
         
         $this->view->assign('suppliers', $suppliers);

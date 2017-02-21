@@ -94,6 +94,14 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $incomes = null;
     
     /**
+     * suppliers
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ARM\Armconstructions\Domain\Model\Supplier>
+     * @cascade remove
+     */
+    protected $suppliers = null;
+    
+    /**
      * agent
      *
      * @var \int
@@ -124,6 +132,7 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->materials = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->payments = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->incomes = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->suppliers = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
     
     
@@ -426,4 +435,46 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->incomes = $incomes;
     }
 
+    /**
+     * Adds a Landlord
+     *
+     * @param \ARM\Armconstructions\Domain\Model\Supplier $supplier
+     * @return void
+     */
+    public function addSupplier(\ARM\Armconstructions\Domain\Model\Supplier $supplier)
+    {
+        $this->suppliers->attach($supplier);
+    }
+    
+    /**
+     * Removes a Supplier
+     *
+     * @param \ARM\Armconstructions\Domain\Model\Supplier $supplierToRemove The Supplier to be removed
+     * @return void
+     */
+    public function removeSupplier(\ARM\Armconstructions\Domain\Model\Supplier $supplierToRemove)
+    {
+        $this->suppliers->detach($supplierToRemove);
+    }
+    
+    /**
+     * Returns the suppliers
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ARM\Armconstructions\Domain\Model\Supplier> $suppliers
+     */
+    public function getSuppliers()
+    {
+        return $this->suppliers;
+    }
+    
+    /**
+     * Sets the suppliers
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ARM\Armconstructions\Domain\Model\Supplier> $suppliers
+     * @return void
+     */
+    public function setSuppliers(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $suppliers)
+    {
+        $this->suppliers = $suppliers;
+    }
 }

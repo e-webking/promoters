@@ -1,11 +1,13 @@
-<f:form action="create"  enctype="multipart/form-data"  name="newSupplier" object="{newSupplier}">
+<f:if condition="{projects}">
+    <f:then>
+<f:form action="create" pageUid="{settings.supplierList}" enctype="multipart/form-data"  name="newSupplier" object="{newSupplier}">
 <div class="modal-header" style="background:lightgreen">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
     <h4 class="modal-title" style="color:black">New Supplier</h4>
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-        <f:render partial="Supplier/FormFields" arguments="{agent:agent}" />
+        <f:render partial="Supplier/FormFields" arguments="{agent:agent, projects:projects, project:project}" />
     </div>
 </div>
 <div class="modal-footer" style="background:lightgray">
@@ -15,4 +17,22 @@
  <f:if condition="{redirect}">
     <f:form.hidden name="redirect" value="{redirect}" />
 </f:if>
+    <f:form.hidden name="returnpage" value="{returnpage}" />
+    <f:form.hidden name="pageaction" value="{pageaction}" />
 </f:form>
+        </f:then>
+    <f:else>
+        <div class="modal-header" style="background:red">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
+            <h4 class="modal-title" style="color:white">New Supplier</h4>
+            </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                Please create project first!
+            </div>
+        </div>
+        <div class="modal-footer" style="background:lightgray">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </f:else>
+</f:if>

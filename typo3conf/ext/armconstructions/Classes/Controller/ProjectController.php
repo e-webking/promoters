@@ -118,8 +118,8 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function showAction(\ARM\Armconstructions\Domain\Model\Project $project)
     {
-        $landlords = $this->landlordRepository->findByAgent($this->agent);
-        $clients = $this->clientRepository->findByAgent($this->agent);
+        $landlords = $this->landlordRepository->findByProject($project);
+        $clients = $this->clientRepository->findByProject($project);
          
         $this->view->assign('landlords', $landlords);
         $this->view->assign('clients', $clients);

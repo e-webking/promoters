@@ -105,14 +105,11 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $this->addFlashMessage('Landlord created successfully', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->landlordRepository->add($newLandlord);
         $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
-         
+        $project = $newLandlord->getProject();
+		
         if ($this->request->hasArgument('returnpage')) {
-            
+			
             $pageid = $this->request->getArgument('returnpage');
-            
-            if ($this->request->hasArgument('project')) {
-                $project = $this->request->getArgument('project');
-            }
             
             if ($this->request->hasArgument('pageaction')) {
                 $pageaction = $this->request->getArgument('pageaction');
@@ -171,7 +168,6 @@ class LandlordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         if ($this->request->hasArgument('returnpage')) {
             
             $pageid = $this->request->getArgument('returnpage');
-            
             
             $project = $landlord->getProject();
             

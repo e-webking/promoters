@@ -36,14 +36,14 @@
                         <div class="content">
                             <div class="title">Customers <a href="{t:uri.ajaxAction(action: 'new', controller: 'Client', pluginName: 'Client', arguments:'{project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-success ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-plus"></i></a></div>
                             <f:for each="{clients}" as="client">
-                                <div class="value">{client.name}, {client.phone} <a href="{t:uri.ajaxAction(action: 'edit', controller: 'Client', pluginName: 'Client', arguments:'{landlord:landlord, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-pencil"></i></a> <a href="{t:uri.ajaxAction(action: 'predel', controller: 'Client', pluginName: 'Client', arguments:'{client:client, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-danger ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-trash-o"></i></a></div>
+                                <div class="value">{client.name}, {client.phone} <a href="{t:uri.ajaxAction(action: 'edit', controller: 'Client', pluginName: 'Client', arguments:'{client:client, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-pencil"></i></a> <a href="{t:uri.ajaxAction(action: 'predel', controller: 'Client', pluginName: 'Client', arguments:'{client:client, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-danger ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-trash-o"></i></a></div>
                             </f:for>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-11"><h3 class="text-center">Expenses</h3></div>
+                <div class="col-xs-11"><h3 class="project text-center">Expenses</h3></div>
                 <div class="col-xs-1"><a href="{t:uri.ajaxAction(action: 'addmat', controller: 'Project', pluginName: 'Project', arguments:'{project : project}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-plus"></i></a></div>
             </div>
                 <f:if condition="{project.materials}">
@@ -87,7 +87,7 @@
                     </div>
                 </f:if>
             <div class="row">
-                <div class="col-xs-11"><h3 class="text-center">Supplier/Vendor/Landlord Payments (Outward)</h3></div>
+                <div class="col-xs-11"><h3 class="project text-center">Supplier/Vendor/Landlord Payments (Outward)</h3></div>
                 <div class="col-xs-1"><a href="{t:uri.ajaxAction(action: 'addpay', controller: 'Project', pluginName: 'Project', arguments:'{project : project}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-plus"></i></a></div>
             </div>
              <f:if condition="{project.payments}">
@@ -133,7 +133,7 @@
                     </div>
                 </f:if>
             <div class="row">
-                <div class="col-xs-11"><h3 class="text-center">Customer Payments (Inward)</h3></div>
+                <div class="col-xs-11"><h3 class="project text-center">Customer Payments (Inward)</h3></div>
                 <div class="col-xs-1"><a href="{t:uri.ajaxAction(action: 'addincome', controller: 'Project', pluginName: 'Project', arguments:'{project : project}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-plus"></i></a></div>
             </div>
              <f:if condition="{project.incomes}">

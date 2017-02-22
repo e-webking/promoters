@@ -50,6 +50,20 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     
     /**
      *
+     * @var \ARM\Armconstructions\Domain\Repository\MaterialRepository
+     * @inject
+     */
+    protected $materialRepository = NULL;
+    
+    /**
+     *
+     * @var \ARM\Armconstructions\Domain\Repository\PaymentRepository
+     * @inject
+     */
+    protected $paymentRepository = NULL;
+    
+    /**
+     *
      * @var int
      */
     protected $agent;
@@ -231,4 +245,26 @@ class SupplierController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         }
     }
 
+    /**
+     * 
+     * @param \ARM\Armconstructions\Domain\Model\Supplier $supplier
+     */
+    public function balanceAction(\ARM\Armconstructions\Domain\Model\Supplier $supplier)
+    {
+        $project = $supplier->getProject();
+        $materials = $this->materialRepository->getBySupplierProject($supplier->getUid(), $project->getUid());
+        $payments = $this->paymentRepository->getBySupplierProject($supplier->getUid(), $project->getUid());
+        
+        $totalmaterial = $this->materialRepository->totalBySupplierProject($supplier->getUid(), $project->getUid());
+        $totalpayment = $this->paymentRepository->totalBySupplierProject($supplier->getUid(), $project->getUid());
+        $due = ($totalmaterial > $totalpayment) ? $totalmaterial - $totalpayment : 0;
+        
+        $this->view->assign('supplier', $supplier);
+        $this->view->assign('project', $project);
+        $this->view->assign('materials', $materials);
+        $this->view->assign('payments', $payments);
+        $this->view->assign('totalmaterial', $totalmaterial);
+        $this->view->assign('totalpayment', $totalpayment);
+        $this->view->assign('due', $due);
+    }
 }

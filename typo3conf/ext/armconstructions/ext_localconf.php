@@ -7,12 +7,12 @@ if (!defined('TYPO3_MODE')) {
 	'ARM.' . $_EXTKEY,
 	'Supplier',
 	array(
-		'Supplier' => 'list, new, create, edit, update, predel, delete',
+		'Supplier' => 'list, balance, new, create, edit, update, predel, delete',
 		
 	),
 	// non-cacheable actions
 	array(
-		'Supplier' => 'list, new, create, edit, update, predel, delete',
+		'Supplier' => 'list, balance, new, create, edit, update, predel, delete',
 		
 	)
 );

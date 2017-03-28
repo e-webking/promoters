@@ -40,7 +40,7 @@
                         <div class="content">
                             <div class="title">Customers/Party <a href="{t:uri.ajaxAction(action: 'new', controller: 'Client', pluginName: 'Client', arguments:'{project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-success ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-plus"></i></a></div>
                             <f:for each="{clients}" as="client">
-                                <div class="value">{client.name}, {client.phone} <a href="{t:uri.ajaxAction(action: 'edit', controller: 'Client', pluginName: 'Client', arguments:'{client:client, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-pencil"></i></a> <a href="{t:uri.ajaxAction(action: 'predel', controller: 'Client', pluginName: 'Client', arguments:'{client:client, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-danger ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-trash-o"></i></a></div>
+                                <div class="value">{client.name} &nbsp; <a href="{t:uri.ajaxAction(action: 'paylist', controller: 'Client', pluginName: 'Client', arguments:'{client:client, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-info ls-modal balance" data-toggle="modal" data-target="#modal-response"><i class="fa fa-bank"></i></a> <a href="{t:uri.ajaxAction(action: 'edit', controller: 'Client', pluginName: 'Client', arguments:'{client:client, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-info ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-pencil"></i></a> <a href="{t:uri.ajaxAction(action: 'predel', controller: 'Client', pluginName: 'Client', arguments:'{client:client, project : project, pageaction:\'show\', pageid:pageid}')}" class="btn btn-sm btn-circle btn-danger ls-modal" data-toggle="modal" data-target="#modal-response"><i class="fa fa-trash-o"></i></a></div>
                             </f:for>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
         $(document).ready(function(){
              
              var expTbl= $('#dtexp').DataTable({
-                    paging: false,
+                    paging: true,
                     bFilter: false,
                     ordering:true,
                     searching: true,
@@ -206,7 +206,7 @@
             expTbl.column( '1' ).order( 'desc' ).draw();
             
             var payTbl= $('#dtpay').DataTable({
-                    paging: false,
+                    paging: true,
                     bFilter: false,
                     ordering:true,
                     searching: true,
@@ -222,7 +222,7 @@
             payTbl.column( '1' ).order( 'desc' ).draw();
             
             var incTbl= $('#dtinc').DataTable({
-                    paging: false,
+                    paging: true,
                     bFilter: false,
                     ordering:true,
                     searching: true,

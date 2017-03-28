@@ -49,6 +49,14 @@ class ClientController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     
     /**
      *
+     * @var \ARM\Armconstructions\Domain\Repository\IncomeRepository
+     * @inject
+     */
+    protected $incomeRepository = NULL;
+
+
+    /**
+     *
      * @var int
      */
     protected $agent;
@@ -234,6 +242,40 @@ class ClientController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $this->redirectToUri($link);
             
         }
+    }
+    
+    /**
+     * action edit
+     *
+     * @param \ARM\Armconstructions\Domain\Model\Client $client
+     * @ignorevalidation $client
+     * @return void
+     */
+    public function paylistAction(\ARM\Armconstructions\Domain\Model\Client $client)
+    {
+        if ($this->request->hasArgument('project')) {
+            $project = $this->request->getArgument('project');
+            $projectObj = $this->projectRepository->findByUid($project);
+            $this->view->assign('project', $projectObj);
+        }
+        if ($this->request->hasArgument('pageid')) {
+            $this->view->assign('returnpage', $this->request->getArgument('pageid'));
+        }
+        if ($this->request->hasArgument('pageaction')) {
+            $this->view->assign('pageaction', $this->request->getArgument('pageaction'));
+        }
+        
+        $totalpay = 0;
+        $payments = $this->incomeRepository->getByClientProject($client, $project);
+        if(count($payments)>0) {
+            foreach ($payments as $pay) {
+                $totalpay += $pay->getAmount();
+            }
+        }
+        
+        $this->view->assign('totalpay', $totalpay);
+        $this->view->assign('payments', $payments);
+        $this->view->assign('client', $client);
     }
 
 }

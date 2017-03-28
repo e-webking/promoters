@@ -50,7 +50,7 @@ class MaterialRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
            $query->logicalAnd($constraints)
         );
         
-        $query->setOrderings(array('sdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING));
+        $query->setOrderings(array('sdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
        
         return $query->execute();
     }

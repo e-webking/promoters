@@ -35,12 +35,12 @@ if (!defined('TYPO3_MODE')) {
 	'ARM.' . $_EXTKEY,
 	'Client',
 	array(
-		'Client' => 'list, new, create, edit, update, predel, delete',
+		'Client' => 'list, new, create, edit, update, predel, delete, paylist',
 		
 	),
 	// non-cacheable actions
 	array(
-		'Client' => 'list, new, create, edit, update, predel, delete',
+		'Client' => 'list, new, create, edit, update, predel, delete, paylist',
 		
 	)
 );

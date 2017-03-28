@@ -32,5 +32,31 @@ namespace ARM\Armconstructions\Domain\Repository;
 class IncomeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
+    /**
+     * 
+     * @param \ARM\Armconstructions\Domain\Model\Client $client
+     * @param int $project
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
+    public function getByClientProject(\ARM\Armconstructions\Domain\Model\Client $client = NULL, $project = NULL) {
+        
+        if ($client instanceof \ARM\Armconstructions\Domain\Model\Client) {
+            $query = $this->createQuery();
+            $constraints[] = $query->equals('hidden', 0);
+            $constraints[] = $query->equals('client', $client->getUid());
+            
+            if (isset($project)) {
+                $constraints[] = $query->equals('project', $project);
+            }
+            $query->matching(
+               $query->logicalAnd($constraints)
+            );
+
+            $query->setOrderings(array('pdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+
+            return $query->execute();
+        }
+        
+    }
     
 }

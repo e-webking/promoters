@@ -1,0 +1,47 @@
+<div class="modal-header" style="background:lightgreen">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="false">&times;</button>
+    <h4 class="modal-title" style="color:black">{project.name}: A/C of {client.name}</h4>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12"><strong>Payment made: Rs. {totalpay}/-</strong><br>
+                <f:if condition="{payments}">
+                    <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Date</td>
+                            <td>Particulars</td>
+                            <td>Amount (Rs.)</td>
+                        </tr>
+                        <f:for each="{payments}" as="payment">
+                            <tr>
+                                <td><f:format.date format="d.m.Y">{payment.pdate}</f:format.date></td>
+                        <td><f:if condition="{payment.mode}">
+                            <f:then>
+                                Cheque [{payment.instrumentno}]
+                            </f:then>
+                            <f:else>
+                                Cash
+                            </f:else>
+                        </f:if>
+                            </td>
+                                <td>{payment.amount}</td>
+                            </tr>
+                        </f:for>
+                        <tr>
+                            <th colspan="2" class="text-right">Total</th>
+                            <th>Rs. {totalpay}/-</th>
+                        </tr>
+                    </table>
+                    </div>
+                </f:if>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer" style="background:lightgray">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <f:form.hidden name="returnpage" value="{returnpage}" />
+    <f:form.hidden name="pageaction" value="{pageaction}" />
+</div>

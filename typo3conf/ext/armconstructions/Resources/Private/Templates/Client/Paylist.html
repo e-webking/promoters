@@ -41,6 +41,7 @@
     </div>
 </div>
 <div class="modal-footer" style="background:lightgray">
+    <f:link.action action="paylist" pageUid="{settings.clientList}" pluginName="Client" arguments="{client: client, project:project}" additionalParams="{type:'98'}" class="btn btn-default" target="_blank">Print</f:link.action>
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     <f:form.hidden name="returnpage" value="{returnpage}" />
     <f:form.hidden name="pageaction" value="{pageaction}" />

@@ -67,7 +67,6 @@ page.10 {
     }
 }
 
-
 ## Include CSS & JS
 page.includeCSS {
     file1 = {$templatePath}Resources/Public/css/bootstrap.min.css
@@ -77,8 +76,6 @@ page.includeCSS {
     file5 = {$templatePath}Resources/Public/css/jquery.dataTables.min.css
     file8 = {$templatePath}Resources/Public/css/jtsage-datebox-4.0.0.bootstrap.min.css
     file9 = {$templatePath}Resources/Public/css/main.css
-    
-
 }
 page.includeJSlibs {
     jquery = {$templatePath}Resources/Public/js/jquery-2.1.4.min.js
@@ -118,6 +115,19 @@ page.headerData.10.value (
 <![endif]-->
 
 )
+
+[globalVar = GP:type = 98]
+page >
+print = PAGE
+print.typeNum = 98
+print.10 = FLUIDTEMPLATE
+print.10 {
+    file = {$templatePath}Resources/Private/Templates/Print.html
+}
+print.includeCSS {
+    file1 = {$templatePath}Resources/Public/css/print.css
+}
+[global]
 
 [globalVar = GP:type = 99]
 page >
